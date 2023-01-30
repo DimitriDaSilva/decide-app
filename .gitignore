@@ -1,41 +1,25 @@
 # Client folders to ignore
+# Logs
+client/logs
+client/*.log
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+client/pnpm-debug.log*
+client/lerna-debug.log*
 
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+client/node_modules
+client/dist
+client/dist-ssr
+client/*.local
 
-# dependencies
-/client/node_modules
-/client/.pnp
-/client/.pnp.js
-
-# testing
-/client/coverage
-
-# next.js
-/client/.next/
-/client/out/
-
-# production
-/client/build
-
-# misc
-/client/.DS_Store
-/client/*.pem
-
-# debug
-/client/npm-debug.log*
-/client/yarn-debug.log*
-/client/yarn-error.log*
-/client/.pnpm-debug.log*
-
-# local env files
-/client/.env*.local
-
-# vercel
-/client/.vercel
-
-# typescript
-/client/*.tsbuildinfo
-/client/next-env.d.ts
-
-# vs code 
-/client/.vscode/
+# Editor directories and files
+client/.vscode/*
+client/!.vscode/extensions.json
+client/.idea
+client/.DS_Store
+client/*.suo
+client/*.ntvs*
+client/*.njsproj
+client/*.sln
+client/*.sw?
