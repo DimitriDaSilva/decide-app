@@ -6,7 +6,11 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getTables() {
+    return [
+      { id: 1, title: 'Table 1' },
+      { id: 2, title: 'Table 2' },
+      { id: 3, title: 'Table 3' },
+    ];
   }
 }

@@ -1,3 +1,5 @@
+.vscode 
+
 # Client folders to ignore
 # Logs
 client/logs
