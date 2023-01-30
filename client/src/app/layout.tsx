@@ -1,4 +1,4 @@
-import "./output.css";
+import "../css/output.css";
 
 export default function RootLayout({
   children,
