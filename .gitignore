@@ -24,6 +24,7 @@ client/*.ntvs*
 client/*.njsproj
 client/*.sln
 client/*.sw?
+client/.env*
 
 # Server folders to ignore
 # compiled output
@@ -57,3 +58,7 @@ server/*.sublime-workspace
 
 # IDE - VSCode
 server/.vscode/*
+
+# .env files
+server/.env*
+
