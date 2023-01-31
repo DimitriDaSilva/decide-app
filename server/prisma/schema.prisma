@@ -14,6 +14,53 @@ model User {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
-  email String
+  email String @unique
   hash  String
+
+  tables Table[]
+
+  @@map("users")
+}
+
+model Table {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title String
+
+  options Option[]
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  @@map("tables")
+}
+
+model Option {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title String
+
+  arguments Argument[]
+
+  tableId Int
+  table   Table @relation(fields: [tableId], references: [id])
+
+  @@map("options")
+}
+
+model Argument {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title String
+
+  optionId Int
+  option   Option @relation(fields: [optionId], references: [id])
+
+  @@map("arguments")
 }
