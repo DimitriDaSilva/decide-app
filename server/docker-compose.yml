@@ -2,7 +2,6 @@ version: '3.8'
 services:
   dev-db:
     image: mysql:8.0.32
-    restart: always
     ports:
       - 3306:3306
     environment:
