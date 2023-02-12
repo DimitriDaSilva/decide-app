@@ -10,6 +10,8 @@ import * as argon from 'argon2';
 import { PrismaService } from '../prisma/prisma.service';
 import { AuthDto } from './dto';
 
+const JWT_TOKEN_LIFETIME = '24h';
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -29,7 +31,7 @@ export class AuthService {
         },
       });
 
-      return this.signToken(user.id, user.email);
+      return this.signToken(user.id, user.email, JWT_TOKEN_LIFETIME);
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {
@@ -61,14 +63,14 @@ export class AuthService {
       throw new ForbiddenException('Wrong password');
     }
 
-    return this.signToken(user.id, user.email);
+    return this.signToken(user.id, user.email, JWT_TOKEN_LIFETIME);
   }
 
-  logout() {
-    return { message: 'logout' };
+  logout(userId: number, email: string) {
+    return this.signToken(userId, email, '1ms');
   }
 
-  async signToken(userId: number, email: string) {
+  async signToken(userId: number, email: string, expiresIn: string) {
     const payload = {
       sub: userId,
       email,
@@ -76,7 +78,7 @@ export class AuthService {
     const secret = this.config.get('JWT_SECRET');
 
     const token = await this.jwt.signAsync(payload, {
-      expiresIn: '24h',
+      expiresIn,
       secret,
     });
 
