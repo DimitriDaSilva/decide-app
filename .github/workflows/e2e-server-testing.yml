@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Test envs
+        run: echo "${{secrets.DATABASE_URL}} ${{secrets.JWT_SECRET}}"
       - name: Run e2e tests
         working-directory: ./server
         run: |
