@@ -1,0 +1,19 @@
+name: e2e-test-server
+
+on: [pull_request]
+
+jobs:
+  e2e-test-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: docker-practice/actions-setup-docker@master
+      - name: Run e2e tests
+        working-directory: ./server
+        run: |
+          npm i
+          npm run test:ci
+        env:
+          DATABASE_URL: ${{vars.DATABASE_URL}}
+          JWT_SECRET: ${{vars.JWT_SECRET}}
