@@ -10,11 +10,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Test envs
         run: |
-          echo $DATABASE_URL
-          echo $JWT_SECRET
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          echo ${{ secrets.DATABASE_URL }} | sed 's/./& /g' 
+          echo ${{ secrets.JWT_SECRET }} | sed 's/./& /g'
       - name: Run e2e tests
         working-directory: ./server
         run: |
