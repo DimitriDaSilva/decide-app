@@ -8,10 +8,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Run e2e tests
+        working-directory: ./server
         with:
           DATABASE_URL: ${{env.DATABASE_URL}}
           JWT_SECRET: ${{env.JWT_SECRET}}
-      - name: Run e2e tests
         run: |
           npm i
           npm run test:ci
