@@ -14,5 +14,5 @@ jobs:
           npm i
           npm run test:ci
         env:
-          DATABASE_URL: ${{env.DATABASE_URL}}
-          JWT_SECRET: jwt_secret
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          JWT_SECRET: ${{secrets.JWT_SECRET}}
