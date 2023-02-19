@@ -27,6 +27,7 @@ export class AuthController {
     return this.authService.login(authDto);
   }
 
+  @HttpCode(HttpStatus.OK)
   @UseGuards(JwtGuard)
   @Post('logout')
   logout(@GetUser() user: User) {

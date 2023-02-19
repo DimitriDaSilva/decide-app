@@ -32,7 +32,7 @@ model Table {
   options Option[]
 
   userId Int
-  user   User @relation(fields: [userId], references: [id])
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("tables")
 }
@@ -47,7 +47,7 @@ model Option {
   arguments Argument[]
 
   tableId Int
-  table   Table @relation(fields: [tableId], references: [id])
+  table   Table @relation(fields: [tableId], references: [id], onDelete: Cascade)
 
   @@map("options")
 }
@@ -60,7 +60,7 @@ model Argument {
   title String
 
   optionId Int
-  option   Option @relation(fields: [optionId], references: [id])
+  option   Option @relation(fields: [optionId], references: [id], onDelete: Cascade)
 
   @@map("arguments")
 }
