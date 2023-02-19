@@ -8,9 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup server directory
-        working-directory: ./server
-      - name: Install packages
-        run: npm i
       - name: Run e2e tests
-        run: npm run test:ci
+        working-directory: ./server
+        run: |
+          npm i
+          npm run test:ci
