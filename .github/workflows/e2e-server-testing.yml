@@ -1,17 +1,14 @@
-name: e2e-server-testing
+name: e2e-test-server
 
 on: [pull_request]
 
 jobs:
-  tests:
+  e2e-test-server:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Test envs
-        run: |
-          echo ${{ vars.DATABASE_URL }} | sed 's/./& /g' 
-          echo ${{ vars.JWT_SECRET }} | sed 's/./& /g'
+      - uses: docker-practice/actions-setup-docker@master
       - name: Run e2e tests
         working-directory: ./server
         run: |
