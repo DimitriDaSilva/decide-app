@@ -1,8 +1,12 @@
+import { routePaths } from "@/app/constants";
+import HomePage from "@/app/pages/Home";
+import { Route, Routes } from "react-router-dom";
+
 function App() {
   return (
-    <h1 className="text-4xl font-bold underline text-red-600">
-      Simple React Typescript Tailwind Sample
-    </h1>
+    <Routes>
+      <Route path={routePaths.home} element={<HomePage />} />
+    </Routes>
   );
 }
 
