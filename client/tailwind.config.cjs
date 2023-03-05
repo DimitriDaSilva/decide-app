@@ -23,12 +23,6 @@ module.exports = {
           hover: "#53567C",
         },
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--gradient-color-stops))",
-      },
-      boxShadow: {
-        around: "0 0 100px rgba(0, 0, 0, 0.3)",
-      },
     },
   },
   plugins: [],
