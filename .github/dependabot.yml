@@ -6,14 +6,20 @@
 version: 2
 updates:
   - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/" # Location of package manifests
+    directory: "/client" # Location of package manifests
     schedule:
       interval: "daily"
       time: "07:00"
       timezone: "Europe/Paris"
-    ignore:
-      - dependency-name: "react"
-      - dependency-name: "react-dom"
-      - dependency-name: "@types/react"
-      - dependency-name: "@types/react-dom"
-      
+    labels:
+      - "npm dependencies"
+      - "frontend"
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/server" # Location of package manifests
+    schedule:
+      interval: "daily"
+      time: "07:00"
+      timezone: "Europe/Paris"
+    labels:
+      - "npm dependencies"
+      - "backend"
