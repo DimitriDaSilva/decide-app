@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 @layer components {
   .color-gradient {
-    @apply bg-gradient-to-bl from-primary via-transparent to-secondary;
+    @apply bg-gradient-to-bl from-primary via-primary to-secondary;
   }
 
   .header-gradient {
@@ -17,6 +17,7 @@
 @layer base {
   html {
     font-family: "Nunito Sans", sans-serif;
+    @apply text-sm m-0 text-white font-light;
   }
 
   #root {
