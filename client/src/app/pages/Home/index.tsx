@@ -7,9 +7,9 @@ const HomePage = () => {
     <Page>
       <PageHeader />
 
-      <div className="w-2/3 h-3/4 flex flex-col justify-center items-center gap-y-20">
+      <div className=" w-full md:w-2/3 h-full flex flex-col justify-center items-center gap-y-20">
         <div className="flex flex-col gap-y-14">
-          <h1 className="font-extrabold text-transparent text-8xl bg-clip-text header-gradient text-center">
+          <h1 className="font-extrabold text-transparent text-7xl md:text-8xl bg-clip-text header-gradient text-center">
             Make hard decisions easy with Decide
           </h1>
           <p className="text-gray-base text-lg text-center">

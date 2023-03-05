@@ -13,7 +13,7 @@ const Button = ({ children, variant, color, className }: ButtonProps) => {
   return (
     <button
       className={clsx(
-        "py-3 px-8 text-white rounded-full transition-shadow",
+        "py-2 px-5 md:py-3 md:px-8 text-base text-white rounded-full transition-shadow",
         buttonDesign(variant, color),
         className
       )}
