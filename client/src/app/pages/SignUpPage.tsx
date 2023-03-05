@@ -1,7 +1,8 @@
 import React from "react";
+import { Auth } from "../components/auth";
 
 const SignUpPage = () => {
-  return <div>SignUpPage</div>;
+  return <Auth page="signup" />;
 };
 
 export { SignUpPage };
