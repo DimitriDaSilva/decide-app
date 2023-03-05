@@ -17,10 +17,10 @@
 @layer base {
   html {
     font-family: "Nunito Sans", sans-serif;
-    @apply text-sm m-0 text-white font-light;
+    @apply text-sm m-0 text-white font-light bg-darkBg;
   }
 
   #root {
-    @apply bg-darkBg flex h-screen w-screen flex-col overflow-hidden;
+    @apply flex h-screen w-screen flex-col overflow-hidden;
   }
 }

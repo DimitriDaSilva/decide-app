@@ -6,7 +6,10 @@ module.exports = {
       colors: {
         darkBg: "#1C2044",
         white: "#FFFFFF",
-        darkGray: "#626262",
+        gray: {
+          base: "#9899AA",
+          dark: "#626262",
+        },
         primary: {
           DEFAULT: "#2DAFA2",
           hover: "#20425B",

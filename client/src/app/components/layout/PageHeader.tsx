@@ -3,7 +3,7 @@ import { Button } from "../button/Button";
 
 const PageHeader = () => {
   return (
-    <header className="w-full flex justify-between p-8 border-b border-darkGray">
+    <header className="w-full flex justify-between p-8 border-b border-gray-dark">
       <TextLogo />
 
       <div className="flex gap-x-7">

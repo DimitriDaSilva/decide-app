@@ -6,7 +6,12 @@ type PageProps = {
   children: ReactNode;
 };
 const Page = ({ className, children }: PageProps) => (
-  <div className={clsx("flex flex-1 flex-col bg-darkBg px-12", className)}>
+  <div
+    className={clsx(
+      "flex flex-1 items-center flex-col bg-darkBg px-12",
+      className
+    )}
+  >
     {children}
   </div>
 );
