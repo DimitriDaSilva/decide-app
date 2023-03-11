@@ -3,6 +3,7 @@ import { useLoginMutation } from "@/entities/auth/api/useLoginMutation";
 import { useSignUpMutation } from "@/entities/auth/api/useSignupMutation";
 import { Input } from "../forms/Input";
 import { Page } from "../layout/Page";
+import { setAccessTokenCookie } from "./setAccessTokenCookie";
 
 interface AuthFormElements extends HTMLFormControlsCollection {
   email: HTMLInputElement;
@@ -42,8 +43,15 @@ const Auth = ({ page }: AuthProps) => {
       password: target.password.value,
     };
 
-    if (page === "login") await login({ body });
-    else await signup({ body });
+    let res: Response | undefined;
+    if (page === "login") {
+      res = await login({ body });
+    } else {
+      res = await signup({ body });
+    }
+
+    const data = (await res.json()) as { access_token: string };
+    setAccessTokenCookie(data.access_token);
   };
 
   return (

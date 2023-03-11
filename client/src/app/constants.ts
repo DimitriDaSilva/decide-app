@@ -3,3 +3,5 @@ export const routePaths = {
   login: "/login",
   signup: "/signup",
 };
+
+export const AUTH_COOKIE_NAME = "access_token";
