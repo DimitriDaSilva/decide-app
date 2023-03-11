@@ -1,13 +1,9 @@
 import { apiEndpoints } from "@/entities/apiEndpoints";
 import { useMutation } from "@tanstack/react-query";
-
-type LoginDto = {
-  email: string;
-  password: string;
-};
+import { AuthDto } from "../types";
 
 type LoginBody = {
-  body: LoginDto;
+  body: AuthDto;
 };
 
 const login = async ({ body }: LoginBody) => {
