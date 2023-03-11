@@ -1,6 +1,15 @@
 import { ReactComponent as ColorLogo } from "@/assets/logo-color.svg";
+import { useLoginMutation } from "@/entities/auth/api/useLoginMutation";
 import { Input } from "../forms/Input";
 import { Page } from "../layout/Page";
+
+interface AuthFormElements extends HTMLFormControlsCollection {
+  email: HTMLInputElement;
+  password: HTMLInputElement;
+}
+interface AuthFormElement extends HTMLFormElement {
+  readonly elements: AuthFormElements;
+}
 
 type AuthPages = "login" | "signup";
 const label: Record<AuthPages, string> = {
@@ -13,8 +22,19 @@ type AuthProps = {
 };
 
 const Auth = ({ page }: AuthProps) => {
-  const handleOnSubmit = (e: React.FormEvent) => {
-    console.log("submitting");
+  const { mutateAsync: login } = useLoginMutation();
+
+  const handleOnSubmit = async (e: React.FormEvent<AuthFormElement>) => {
+    e.preventDefault();
+
+    const target = e.currentTarget.elements;
+
+    const body = {
+      email: target.email.value,
+      password: target.password.value,
+    };
+
+    await login({ body });
   };
 
   return (
@@ -34,6 +54,7 @@ const Auth = ({ page }: AuthProps) => {
           type="password"
           placeholder="Enter your password"
         />
+
         <button
           type="submit"
           className="mt-5 rounded-sm bg-primary px-5 py-4 placeholder-gray-base focus:outline focus:outline-primary outline-offset-1"

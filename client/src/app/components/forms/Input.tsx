@@ -7,12 +7,13 @@ type InputProps = {
   className?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-const Input = ({ label, id, className, ...rest }: InputProps) => {
+const Input = ({ label, id, className, ...inputProps }: InputProps) => {
   return (
     <label className="flex flex-col gap-y-2" htmlFor={id}>
       {label}
       <input
-        {...rest}
+        {...inputProps}
+        id={id}
         className={clsx(
           "rounded-sm bg-third px-5 py-3 placeholder-gray-base focus:outline focus:outline-primary",
           className
