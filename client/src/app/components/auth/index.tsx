@@ -13,9 +13,15 @@ interface AuthFormElement extends HTMLFormElement {
 }
 
 type AuthPages = "login" | "signup";
-const label: Record<AuthPages, string> = {
-  login: "Log in",
-  signup: "Sign up",
+const labels = {
+  login: {
+    header: "Log in to the Decide app",
+    ctaButton: "Log in",
+  },
+  signup: {
+    header: "Create your Decide account",
+    ctaButton: "Sign up",
+  },
 };
 
 type AuthProps = {
@@ -44,6 +50,8 @@ const Auth = ({ page }: AuthProps) => {
     <Page className="bg-gradient-to-b from-darkBg via-darkBg to-third justify-center gap-y-10">
       <ColorLogo />
 
+      <p>{labels[page].header}</p>
+
       <form className="flex flex-col gap-y-6 w-72" onSubmit={handleOnSubmit}>
         <Input
           label="Email"
@@ -62,7 +70,7 @@ const Auth = ({ page }: AuthProps) => {
           type="submit"
           className="mt-5 rounded-sm bg-primary px-5 py-4 placeholder-gray-base focus:outline focus:outline-primary outline-offset-1"
         >
-          {label[page]}
+          {labels[page].ctaButton}
         </button>
       </form>
     </Page>
