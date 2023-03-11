@@ -1,5 +1,6 @@
 import { ReactComponent as ColorLogo } from "@/assets/logo-color.svg";
 import { useLoginMutation } from "@/entities/auth/api/useLoginMutation";
+import { useSignUpMutation } from "@/entities/auth/api/useSignupMutation";
 import { Input } from "../forms/Input";
 import { Page } from "../layout/Page";
 
@@ -23,6 +24,7 @@ type AuthProps = {
 
 const Auth = ({ page }: AuthProps) => {
   const { mutateAsync: login } = useLoginMutation();
+  const { mutateAsync: signup } = useSignUpMutation();
 
   const handleOnSubmit = async (e: React.FormEvent<AuthFormElement>) => {
     e.preventDefault();
@@ -34,7 +36,8 @@ const Auth = ({ page }: AuthProps) => {
       password: target.password.value,
     };
 
-    await login({ body });
+    if (page === "login") await login({ body });
+    else await signup({ body });
   };
 
   return (
