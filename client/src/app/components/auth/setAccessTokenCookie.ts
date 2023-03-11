@@ -16,10 +16,4 @@ const setAccessTokenCookie = (accessToken: string) => {
   });
 };
 
-const removeAccessTokenCookie = () => {
-  const cookies = new Cookies();
-
-  cookies.remove(AUTH_COOKIE_NAME);
-};
-
 export { setAccessTokenCookie };
