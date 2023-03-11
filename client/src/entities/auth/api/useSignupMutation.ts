@@ -21,7 +21,7 @@ const signUp = async ({ body }: SignUpBody) => {
 };
 
 const useSignUpMutation = () => {
-  return useMutation(async ({ body }: SignUpBody) => signUp({ body }));
+  return useMutation(signUp);
 };
 
 export { useSignUpMutation };

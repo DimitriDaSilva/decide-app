@@ -21,7 +21,7 @@ const login = async ({ body }: LoginBody) => {
 };
 
 const useLoginMutation = () => {
-  return useMutation(async ({ body }: LoginBody) => login({ body }));
+  return useMutation(login);
 };
 
 export { useLoginMutation };
