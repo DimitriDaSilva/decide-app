@@ -47,7 +47,7 @@ const Auth = ({ page }: AuthProps) => {
   };
 
   return (
-    <Page className="bg-gradient-to-b from-darkBg via-darkBg to-third justify-center gap-y-10">
+    <Page className="fixed w-full h-full bg-gradient-to-b from-darkBg via-darkBg to-third justify-center gap-y-10">
       <ColorLogo />
 
       <p>{labels[page].header}</p>
