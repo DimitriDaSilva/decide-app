@@ -12,11 +12,11 @@ interface AuthFormElements extends HTMLFormControlsCollection {
   email: HTMLInputElement;
   password: HTMLInputElement;
 }
+
 interface AuthFormElement extends HTMLFormElement {
   readonly elements: AuthFormElements;
 }
 
-type AuthPages = "login" | "signup";
 const labels = {
   login: {
     header: "Log in to the Decide app",
@@ -29,7 +29,7 @@ const labels = {
 };
 
 type AuthProps = {
-  page: AuthPages;
+  page: "login" | "signup";
 };
 
 const Auth = ({ page }: AuthProps) => {

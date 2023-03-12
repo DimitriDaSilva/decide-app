@@ -40,7 +40,7 @@ const PageHeader = () => {
 
       {isUserAuthenticated() ? (
         <Button
-          onClick={() => removeAccessTokenCookie()}
+          onClick={removeAccessTokenCookie}
           variant="ghost"
           color="secondary"
         >
