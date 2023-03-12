@@ -1,15 +1,15 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import { routePaths } from "@/app/constants";
-import { ReactComponent as ColorLogo } from "@/assets/logo-color.svg";
-import { useLoginMutation } from "@/entities/auth/api/useLoginMutation";
-import { useSignUpMutation } from "@/entities/auth/api/useSignupMutation";
-import { AuthResponseDto } from "@/entities/auth/types";
+import { routePaths } from '@/app/constants';
+import { ReactComponent as ColorLogo } from '@/assets/logo-color.svg';
+import { useLoginMutation } from '@/entities/auth/api/useLoginMutation';
+import { useSignUpMutation } from '@/entities/auth/api/useSignupMutation';
+import { AuthResponseDto } from '@/entities/auth/types';
 
-import { Input } from "../forms/Input";
-import { Page } from "../layout/Page";
+import { Input } from '../forms/Input';
+import { Page } from '../layout/Page';
 
-import { setAccessTokenCookie } from "./setAccessTokenCookie";
+import { setAccessTokenCookie } from './setAccessTokenCookie';
 
 interface AuthFormElements extends HTMLFormControlsCollection {
   email: HTMLInputElement;
@@ -22,17 +22,17 @@ interface AuthFormElement extends HTMLFormElement {
 
 const labels = {
   login: {
-    header: "Log in to the Decide app",
-    ctaButton: "Log in",
+    header: 'Log in to the Decide app',
+    ctaButton: 'Log in',
   },
   signup: {
-    header: "Create your Decide account",
-    ctaButton: "Sign up",
+    header: 'Create your Decide account',
+    ctaButton: 'Sign up',
   },
 };
 
 type AuthProps = {
-  page: "login" | "signup";
+  page: 'login' | 'signup';
 };
 
 const Auth = ({ page }: AuthProps) => {
@@ -51,7 +51,7 @@ const Auth = ({ page }: AuthProps) => {
     };
 
     let data: AuthResponseDto;
-    if (page === "login") {
+    if (page === 'login') {
       data = await login({ body });
     } else {
       data = await signup({ body });

@@ -1,11 +1,11 @@
-import jwtDecode, { JwtPayload } from "jwt-decode";
-import { useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
+import jwtDecode, { JwtPayload } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
-import { ReactComponent as TextLogo } from "@/assets/logo-text.svg";
-import { AUTH_COOKIE_NAME, routePaths } from "@/app/constants";
+import { ReactComponent as TextLogo } from '@/assets/logo-text.svg';
+import { AUTH_COOKIE_NAME, routePaths } from '@/app/constants';
 
-import { Button } from "../button/Button";
+import { Button } from '../button/Button';
 
 const removeAccessTokenCookie = () => {
   const cookies = new Cookies();
@@ -25,7 +25,7 @@ const isUserAuthenticated = () => {
   const decodedAccessToken = jwtDecode<JwtPayload>(accessToken);
 
   if (!decodedAccessToken.exp) {
-    throw new Error("Invalid access token");
+    throw new Error('Invalid access token');
   }
 
   if (decodedAccessToken.exp * 1000 < Date.now()) return false;

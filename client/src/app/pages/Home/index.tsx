@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import { Button } from "@/app/components/button/Button";
-import { Page } from "@/app/components/layout/Page";
-import { PageHeader } from "@/app/components/layout/PageHeader";
-import { routePaths } from "@/app/constants";
+import { Button } from '@/app/components/button/Button';
+import { Page } from '@/app/components/layout/Page';
+import { PageHeader } from '@/app/components/layout/PageHeader';
+import { routePaths } from '@/app/constants';
 
 const HomePage = () => {
   const navigate = useNavigate();

@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "format": "prettier --write \"src/**/*.ts\"",
+    "format": "prettier --write \"src/**/*{.ts,.tsx}\"",
     "lint": "eslint . --ext .ts,.tsx --fix"
   },
   "dependencies": {
