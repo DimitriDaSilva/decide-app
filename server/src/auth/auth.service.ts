@@ -66,10 +66,6 @@ export class AuthService {
     return this.signToken(user.id, user.email, JWT_TOKEN_LIFETIME);
   }
 
-  logout(userId: number, email: string) {
-    return this.signToken(userId, email, '1ms');
-  }
-
   async signToken(userId: number, email: string, expiresIn: string) {
     const payload = {
       sub: userId,
