@@ -33,5 +33,19 @@ module.exports = {
   rules: {
     // Add your own rules here to override ones from the extended configs.
     'no-case-declarations': 'off',
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'always',
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'external',
+            position: 'after',
+          },
+        ],
+        groups: ['builtin', 'external', 'parent', 'sibling', 'index'],
+      },
+    ],
   },
 };

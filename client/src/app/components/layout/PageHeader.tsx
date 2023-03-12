@@ -1,8 +1,10 @@
-import { AUTH_COOKIE_NAME, routePaths } from "@/app/constants";
-import { ReactComponent as TextLogo } from "@/assets/logo-text.svg";
 import jwtDecode, { JwtPayload } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
+
+import { ReactComponent as TextLogo } from "@/assets/logo-text.svg";
+import { AUTH_COOKIE_NAME, routePaths } from "@/app/constants";
+
 import { Button } from "../button/Button";
 
 const removeAccessTokenCookie = () => {

@@ -7,7 +7,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx --fix"
   },
   "dependencies": {
     "@tanstack/react-query": "4.26.1",

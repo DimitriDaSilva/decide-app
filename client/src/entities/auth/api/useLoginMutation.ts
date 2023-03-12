@@ -1,6 +1,8 @@
+import { useMutation } from '@tanstack/react-query';
+
 import { API_ROUTE_URL } from '@/entities/apiRoutes';
 import { fetcher } from '@/utils/fetcher';
-import { useMutation } from '@tanstack/react-query';
+
 import { AuthDto, AuthResponseSchema } from '../types';
 
 type LoginProps = {

@@ -1,6 +1,7 @@
-import { AUTH_COOKIE_NAME } from '@/app/constants';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 import Cookies from 'universal-cookie';
+
+import { AUTH_COOKIE_NAME } from '@/app/constants';
 
 const setAccessTokenCookie = (accessToken: string) => {
   const cookies = new Cookies();
