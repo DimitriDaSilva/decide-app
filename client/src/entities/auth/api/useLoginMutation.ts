@@ -1,23 +1,27 @@
-import { apiEndpoints } from "@/entities/apiEndpoints";
+import { API_ROUTE_URL } from "@/entities/apiRoutes";
+import { fetcher } from "@/utils/fetcher";
 import { useMutation } from "@tanstack/react-query";
-import { AuthDto } from "../types";
+import { AuthDto, AuthResponseSchema } from "../types";
 
-type LoginBody = {
+type LoginProps = {
   body: AuthDto;
 };
 
-const login = async ({ body }: LoginBody) => {
-  console.log(import.meta.env.VITE_API_BASE_URL);
-  return await fetch(
-    import.meta.env.VITE_API_BASE_URL + apiEndpoints.auth.login,
+const login = async ({ body }: LoginProps) => {
+  const data = await fetcher(
+    {
+      url: API_ROUTE_URL.LOGIN,
+      method: "POST",
+    },
     {
       body: JSON.stringify(body),
-      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
     }
   );
+
+  return AuthResponseSchema.parse(data);
 };
 
 const useLoginMutation = () => {

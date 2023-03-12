@@ -1,23 +1,27 @@
-import { apiEndpoints } from "@/entities/apiEndpoints";
+import { API_ROUTE_URL } from "@/entities/apiRoutes";
+import { fetcher } from "@/utils/fetcher";
 import { useMutation } from "@tanstack/react-query";
-import { AuthDto } from "../types";
+import { AuthDto, AuthResponseSchema } from "../types";
 
-type SignUpBody = {
+type SignUpProps = {
   body: AuthDto;
 };
 
-const signUp = async ({ body }: SignUpBody) => {
-  console.log(import.meta.env.VITE_API_BASE_URL);
-  return await fetch(
-    import.meta.env.VITE_API_BASE_URL + apiEndpoints.auth.signup,
+const signUp = async ({ body }: SignUpProps) => {
+  const data = await fetcher(
+    {
+      url: API_ROUTE_URL.SIGN_UP,
+      method: "POST",
+    },
     {
       body: JSON.stringify(body),
-      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
     }
   );
+
+  return AuthResponseSchema.parse(data);
 };
 
 const useSignUpMutation = () => {

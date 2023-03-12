@@ -1,6 +1,9 @@
+import { routePaths } from "@/app/constants";
 import { ReactComponent as ColorLogo } from "@/assets/logo-color.svg";
 import { useLoginMutation } from "@/entities/auth/api/useLoginMutation";
 import { useSignUpMutation } from "@/entities/auth/api/useSignupMutation";
+import { AuthResponseDto } from "@/entities/auth/types";
+import { useNavigate } from "react-router-dom";
 import { Input } from "../forms/Input";
 import { Page } from "../layout/Page";
 import { setAccessTokenCookie } from "./setAccessTokenCookie";
@@ -32,6 +35,7 @@ type AuthProps = {
 const Auth = ({ page }: AuthProps) => {
   const { mutateAsync: login } = useLoginMutation();
   const { mutateAsync: signup } = useSignUpMutation();
+  const navigate = useNavigate();
 
   const handleOnSubmit = async (e: React.FormEvent<AuthFormElement>) => {
     e.preventDefault();
@@ -43,15 +47,15 @@ const Auth = ({ page }: AuthProps) => {
       password: target.password.value,
     };
 
-    let res: Response | undefined;
+    let data: AuthResponseDto;
     if (page === "login") {
-      res = await login({ body });
+      data = await login({ body });
     } else {
-      res = await signup({ body });
+      data = await signup({ body });
     }
 
-    const data = (await res.json()) as { access_token: string };
     setAccessTokenCookie(data.access_token);
+    navigate(routePaths.home);
   };
 
   return (
