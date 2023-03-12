@@ -1,6 +1,7 @@
-import { AUTH_COOKIE_NAME } from "@/app/constants";
-import jwtDecode, { JwtPayload } from "jwt-decode";
-import Cookies from "universal-cookie";
+import jwtDecode, { JwtPayload } from 'jwt-decode';
+import Cookies from 'universal-cookie';
+
+import { AUTH_COOKIE_NAME } from '@/app/constants';
 
 const setAccessTokenCookie = (accessToken: string) => {
   const cookies = new Cookies();
@@ -8,7 +9,7 @@ const setAccessTokenCookie = (accessToken: string) => {
   const decodedAccessToken = jwtDecode<JwtPayload>(accessToken);
 
   if (!decodedAccessToken.exp) {
-    throw new Error("Invalid access token");
+    throw new Error('Invalid access token');
   }
 
   cookies.set(AUTH_COOKIE_NAME, accessToken, {

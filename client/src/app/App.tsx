@@ -1,8 +1,10 @@
-import { routePaths } from "@/app/constants";
-import HomePage from "@/app/pages/Home";
-import { Route, Routes } from "react-router-dom";
-import { LoginPage } from "./pages/LoginPage";
-import { SignUpPage } from "./pages/SignUpPage";
+import { Route, Routes } from 'react-router-dom';
+
+import { routePaths } from '@/app/constants';
+import HomePage from '@/app/pages/Home';
+
+import { LoginPage } from './pages/LoginPage';
+import { SignUpPage } from './pages/SignUpPage';
 
 function App() {
   return (

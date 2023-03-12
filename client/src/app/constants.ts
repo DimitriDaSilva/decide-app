@@ -1,7 +1,7 @@
 export const routePaths = {
-  home: "/",
-  login: "/login",
-  signup: "/signup",
+  home: '/',
+  login: '/login',
+  signup: '/signup',
 };
 
-export const AUTH_COOKIE_NAME = "access_token";
+export const AUTH_COOKIE_NAME = 'access_token';

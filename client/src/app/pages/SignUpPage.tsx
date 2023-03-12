@@ -1,5 +1,4 @@
-import React from "react";
-import { Auth } from "../components/auth";
+import { Auth } from '../components/auth';
 
 const SignUpPage = () => {
   return <Auth page="signup" />;
