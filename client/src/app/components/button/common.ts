@@ -1,5 +1,3 @@
-import clsx from 'clsx';
-
 export type ButtonVariant = 'filled' | 'ghost';
 export type ButtonColor = 'gradient' | 'blue' | 'secondary';
 

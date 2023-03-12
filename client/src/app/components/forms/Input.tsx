@@ -1,5 +1,5 @@
-import clsx from "clsx";
-import React, { InputHTMLAttributes } from "react";
+import clsx from 'clsx';
+import { InputHTMLAttributes } from 'react';
 
 type InputProps = {
   label: string;
@@ -15,8 +15,8 @@ const Input = ({ label, id, className, ...inputProps }: InputProps) => {
         {...inputProps}
         id={id}
         className={clsx(
-          "rounded-sm bg-third px-5 py-3 placeholder-gray-base focus:outline focus:outline-primary",
-          className
+          'rounded-sm bg-third px-5 py-3 placeholder-gray-base focus:outline focus:outline-primary',
+          className,
         )}
       />
     </label>
