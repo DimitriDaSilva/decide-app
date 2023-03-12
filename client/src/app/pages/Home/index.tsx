@@ -1,8 +1,12 @@
 import { Button } from "@/app/components/button/Button";
 import { Page } from "@/app/components/layout/Page";
 import { PageHeader } from "@/app/components/layout/PageHeader";
+import { routePaths } from "@/app/constants";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <Page>
       <PageHeader />
@@ -19,7 +23,11 @@ const HomePage = () => {
           </p>
         </div>
 
-        <Button color="gradient" variant="filled">
+        <Button
+          onClick={() => navigate(routePaths.signup)}
+          color="gradient"
+          variant="filled"
+        >
           Get started
         </Button>
       </div>
