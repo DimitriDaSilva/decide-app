@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/binary';
 import * as argon from 'argon2';
 import { PrismaService } from '../prisma/prisma.service';
 import { AuthDto } from './dto';
@@ -64,10 +64,6 @@ export class AuthService {
     }
 
     return this.signToken(user.id, user.email, JWT_TOKEN_LIFETIME);
-  }
-
-  logout(userId: number, email: string) {
-    return this.signToken(userId, email, '1ms');
   }
 
   async signToken(userId: number, email: string, expiresIn: string) {

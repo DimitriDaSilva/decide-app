@@ -102,38 +102,6 @@ describe('App e2e', () => {
           .stores('userAccessToken', 'access_token');
       });
     });
-
-    describe('Log out', () => {
-      it('should log out', () => {
-        return pactum
-          .spec()
-          .post('/auth/logout')
-          .withHeaders({
-            Authorization: 'Bearer $S{userAccessToken}',
-          })
-          .expectStatus(200)
-          .stores('userAccessToken', 'access_token');
-      });
-
-      it('throw an exception if access_token not provided', () => {
-        return pactum
-          .spec()
-          .get('/tables')
-          .withHeaders({
-            Authorization: 'Bearer $S{userAccessToken}',
-          })
-          .expectStatus(401);
-      });
-
-      it('should log back in', () => {
-        return pactum
-          .spec()
-          .post('/auth/login')
-          .withBody(body)
-          .expectStatus(200)
-          .stores('userAccessToken', 'access_token');
-      });
-    });
   });
 
   describe('Tables', () => {
