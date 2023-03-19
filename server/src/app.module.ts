@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
-import { PrismaModule } from './prisma/prisma.module';
 import { TableModule } from './table/table.module';
 
 @Module({
@@ -11,8 +11,16 @@ import { TableModule } from './table/table.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        url: configService.get('DATABASE_URL'),
+        entities: [__dirname + '/**/*.entity{.ts}'],
+        synchronize: true,
+      }),
+    }),
     AuthModule,
-    PrismaModule,
     TableModule,
   ],
   providers: [
