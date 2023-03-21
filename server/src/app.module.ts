@@ -16,7 +16,7 @@ import { TableModule } from './table/table.module';
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
         url: configService.get('DATABASE_URL'),
-        entities: [__dirname + '/**/*.entity{.ts}'],
+        autoLoadEntities: true,
         synchronize: true,
       }),
     }),
