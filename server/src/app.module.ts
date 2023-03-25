@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { dataSourceOptions } from 'db/data-source';
 import { AuthModule } from './auth/auth.module';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { TableModule } from './table/table.module';
@@ -11,15 +12,7 @@ import { TableModule } from './table/table.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        url: configService.get('DATABASE_URL'),
-        autoLoadEntities: true,
-        synchronize: true,
-      }),
-    }),
+    TypeOrmModule.forRoot({ ...dataSourceOptions, autoLoadEntities: true }),
     AuthModule,
     TableModule,
   ],
