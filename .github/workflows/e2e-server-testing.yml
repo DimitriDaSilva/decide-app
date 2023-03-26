@@ -5,6 +5,10 @@ on:
     paths:
       - "server/**"
 
+env:
+  DATABASE_URL: ${{vars.DATABASE_URL}}
+  JWT_SECRET: ${{vars.JWT_SECRET}}
+
 jobs:
   e2e-test-server:
     runs-on: ubuntu-latest
@@ -14,10 +18,10 @@ jobs:
       - uses: docker-practice/actions-setup-docker@master
       - name: Run e2e tests
         working-directory: ./server
+        env:
+          DATABASE_URL: ${{vars.DATABASE_URL}}
+          JWT_SECRET: ${{vars.JWT_SECRET}}
         run: |
           npm i
           echo "overridden variable : ${{ vars.DATABASE_URL }}"
           npm run test:ci
-        env:
-          DATABASE_URL: ${{vars.DATABASE_URL}}
-          JWT_SECRET: ${{vars.JWT_SECRET}}
