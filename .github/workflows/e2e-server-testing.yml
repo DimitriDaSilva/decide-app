@@ -2,8 +2,8 @@ name: e2e-test-server
 
 on:
   pull_request:
-    branches:
-      - "**/server/**"
+    paths:
+      - "server/**"
 
 jobs:
   e2e-test-server:
