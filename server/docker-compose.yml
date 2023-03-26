@@ -1,26 +1,20 @@
 version: '3.8'
+
 services:
   dev-db:
-    image: mysql:8.0.32
-    ports:
-      - 3306:3306
+    image: postgres:14.1-alpine
+    restart: always
     environment:
-      MYSQL_DATABASE: nest
-      MYSQL_USER: mysql
-      MYSQL_PASSWORD: 123
-      MYSQL_ROOT_PASSWORD: 1234
-    networks:
-      - freecodecamp
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+
   test-db:
-    image: mysql:8.0.32
-    ports:
-      - 3307:3306
+    image: postgres:14.1-alpine
+    restart: always
     environment:
-      MYSQL_DATABASE: nest
-      MYSQL_USER: mysql
-      MYSQL_PASSWORD: 123
-      MYSQL_ROOT_PASSWORD: 1234
-    networks:
-      - freecodecamp
-networks:
-  freecodecamp:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5433:5432'

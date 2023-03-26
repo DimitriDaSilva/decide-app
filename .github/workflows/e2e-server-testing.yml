@@ -5,6 +5,10 @@ on:
     paths:
       - "server/**"
 
+env:
+  DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5433
+  JWT_SECRET: secret
+
 jobs:
   e2e-test-server:
     runs-on: ubuntu-latest
@@ -17,6 +21,3 @@ jobs:
         run: |
           npm i
           npm run test:ci
-        env:
-          DATABASE_URL: ${{vars.DATABASE_URL}}
-          JWT_SECRET: ${{vars.JWT_SECRET}}
