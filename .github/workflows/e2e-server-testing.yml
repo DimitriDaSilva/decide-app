@@ -6,8 +6,8 @@ on:
       - "server/**"
 
 env:
-  DATABASE_URL: ${{vars.DATABASE_URL}}
-  JWT_SECRET: ${{vars.JWT_SECRET}}
+  DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5433
+  JWT_SECRET: secret
 
 jobs:
   e2e-test-server:
@@ -18,10 +18,6 @@ jobs:
       - uses: docker-practice/actions-setup-docker@master
       - name: Run e2e tests
         working-directory: ./server
-        env:
-          DATABASE_URL: ${{vars.DATABASE_URL}}
-          JWT_SECRET: ${{vars.JWT_SECRET}}
         run: |
           npm i
-          echo "overridden variable : ${{ vars.DATABASE_URL }}"
           npm run test:ci
