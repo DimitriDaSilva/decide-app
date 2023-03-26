@@ -1,18 +1,27 @@
 import { AppModule } from '@/app.module';
 import { AuthDto } from '@/auth/dto';
-import { PrismaService } from '@/prisma/prisma.service';
 import { INestApplication } from '@nestjs/common';
 import { ValidationPipe } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import * as pactum from 'pactum';
 
 describe('App e2e', () => {
   let app: INestApplication;
-  let prisma: PrismaService;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [
+        AppModule,
+        TypeOrmModule.forRoot({
+          type: 'postgres',
+          url: 'postgresql://postgres:postgres@127.0.0.1:5433',
+          keepConnectionAlive: true,
+          dropSchema: true,
+          synchronize: true,
+          autoLoadEntities: true,
+        }),
+      ],
     }).compile();
 
     app = moduleRef.createNestApplication();
@@ -26,9 +35,6 @@ describe('App e2e', () => {
     await app.init();
     await app.listen(3333);
 
-    prisma = app.get(PrismaService);
-
-    await prisma.cleanDb();
     pactum.request.setBaseUrl('http://localhost:3333');
   });
 
