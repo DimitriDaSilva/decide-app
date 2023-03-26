@@ -16,6 +16,7 @@ jobs:
         working-directory: ./server
         run: |
           npm i
+          echo "overridden variable : ${{ vars.DATABASE_URL }}"
           npm run test:ci
         env:
           DATABASE_URL: ${{vars.DATABASE_URL}}
