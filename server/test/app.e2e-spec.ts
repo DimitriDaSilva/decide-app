@@ -115,15 +115,47 @@ describe('App e2e', () => {
       return pactum.spec().get('/tables').expectStatus(401);
     });
 
-    it('should get all the tables for a user', () => {
+    it('should create a new table', () => {
+      return pactum
+        .spec()
+        .post('/tables')
+        .withBody({ title: 'Table 1' })
+        .withHeaders({
+          Authorization: 'Bearer $S{userAccessToken}',
+        })
+        .expectStatus(201);
+    });
+
+    it('should get all the tables', () => {
       return pactum
         .spec()
         .get('/tables')
         .withHeaders({
           Authorization: 'Bearer $S{userAccessToken}',
         })
-        .expectJson({ message: 'all tables' })
+        .expectJson({ tables: [{ title: 'Table 1', tableId: 1 }] })
         .expectStatus(200);
+    });
+
+    it('should update a table', () => {
+      return pactum
+        .spec()
+        .put('/tables/1')
+        .withBody({ title: 'New title' })
+        .withHeaders({
+          Authorization: 'Bearer $S{userAccessToken}',
+        })
+        .expectStatus(200);
+    });
+
+    it('should delete a table', () => {
+      return pactum
+        .spec()
+        .delete('/tables/1')
+        .withHeaders({
+          Authorization: 'Bearer $S{userAccessToken}',
+        })
+        .expectStatus(204);
     });
   });
 });
