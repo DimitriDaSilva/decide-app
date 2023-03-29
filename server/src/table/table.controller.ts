@@ -5,6 +5,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   UseGuards,
@@ -28,12 +29,12 @@ export class TableController {
   }
 
   @Put(':tableId')
-  updateTable(@Param() tableId: number) {
+  updateTable(@Param('tableId', ParseIntPipe) tableId: number) {
     return this.tableService.updateTable(tableId);
   }
 
   @Delete(':tableId')
-  deleteTable(@Param() tableId: number) {
+  deleteTable(@Param('tableId', ParseIntPipe) tableId: number) {
     return this.tableService.deleteTable(tableId);
   }
 }
