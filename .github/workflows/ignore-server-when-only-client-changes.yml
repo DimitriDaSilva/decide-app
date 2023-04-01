@@ -5,7 +5,7 @@ on:
       - 'server/**'
 
 jobs:
-  build:
+   e2e-test-server:
     runs-on: ubuntu-latest
     steps:
       - run: 'echo "No changes in server. No build required"'
