@@ -1,11 +1,11 @@
-name: ci
+name: e2e-test-server
 on:
   pull_request:
     paths-ignore:
       - 'server/**'
 
 jobs:
-  build:
+   e2e-test-server:
     runs-on: ubuntu-latest
     steps:
       - run: 'echo "No changes in server. No build required"'
