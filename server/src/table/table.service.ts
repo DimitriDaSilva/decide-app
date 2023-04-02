@@ -19,12 +19,18 @@ export class TableService {
     await this.tableRepository.save({ title: tableTitle, user });
   }
 
+  async getTableByTableId(tableId: number) {
+    return this.tableRepository.findOneBy({ id: tableId });
+  }
+
   async getTablesByUserId(userId: number) {
     return this.tableRepository.findBy({ user: { id: userId } });
   }
 
-  async updateTable(tableId: number) {
-    return { message: 'updating table', tableId };
+  async updateTable(tableId: number, payload: Partial<Table>) {
+    const { id } = await this.getTableByTableId(tableId);
+
+    this.tableRepository.update({ id }, { ...payload });
   }
 
   async deleteTable(tableId: number) {
