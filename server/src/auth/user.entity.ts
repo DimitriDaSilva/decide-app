@@ -1,8 +1,10 @@
+import { Table } from '@/table/table.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity('users')
@@ -19,6 +21,6 @@ export class User {
   @Column()
   hash: string;
 
-  // @OneToMany(() => Table, table => table.user)
-  // tables: Table[];
+  @OneToMany(() => Table, (table) => table.user)
+  tables: Table[];
 }

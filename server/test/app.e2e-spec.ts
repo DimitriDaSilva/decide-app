@@ -1,5 +1,6 @@
 import { AppModule } from '@/app.module';
 import { AuthDto } from '@/auth/dto';
+import { UpdateTableDto } from '@/table/update-table.dto';
 import { INestApplication } from '@nestjs/common';
 import { ValidationPipe } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
@@ -115,15 +116,71 @@ describe('App e2e', () => {
       return pactum.spec().get('/tables').expectStatus(401);
     });
 
-    it('should get all the tables for a user', () => {
+    it('should create a new table', () => {
+      return pactum
+        .spec()
+        .post('/tables')
+        .withBody({ title: 'New table' })
+        .withHeaders({
+          Authorization: 'Bearer $S{userAccessToken}',
+        })
+        .expectStatus(201)
+        .stores('tableId', 'id')
+        .stores('tableTitle', 'title');
+    });
+
+    it('should get all the tables', () => {
       return pactum
         .spec()
         .get('/tables')
         .withHeaders({
           Authorization: 'Bearer $S{userAccessToken}',
         })
-        .expectJson({ message: 'all tables' })
+        .expectJsonLike([{ title: '$S{tableTitle}', id: '$S{tableId}' }])
         .expectStatus(200);
+    });
+
+    it('should get a single table', () => {
+      return pactum
+        .spec()
+        .get('/tables/$S{tableId}')
+        .withHeaders({
+          Authorization: 'Bearer $S{userAccessToken}',
+        })
+        .expectJsonLike({ title: '$S{tableTitle}', id: '$S{tableId}' })
+        .expectStatus(200);
+    });
+
+    it('should update a table', async () => {
+      const body: UpdateTableDto = { title: 'New title' };
+
+      await pactum
+        .spec()
+        .put('/tables/$S{tableId}')
+        .withBody(body)
+        .withHeaders({
+          Authorization: 'Bearer $S{userAccessToken}',
+        })
+        .expectStatus(200);
+
+      return pactum
+        .spec()
+        .get('/tables/$S{tableId}')
+        .withHeaders({
+          Authorization: 'Bearer $S{userAccessToken}',
+        })
+        .expectJsonLike(body)
+        .expectStatus(200);
+    });
+
+    it('should delete a table', () => {
+      return pactum
+        .spec()
+        .delete('/tables/$S{tableId}')
+        .withHeaders({
+          Authorization: 'Bearer $S{userAccessToken}',
+        })
+        .expectStatus(204);
     });
   });
 });
