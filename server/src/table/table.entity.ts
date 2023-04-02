@@ -1,7 +1,9 @@
+import { User } from '@/auth/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -20,7 +22,6 @@ export class Table {
   @Column()
   title: string;
 
-  // TODO: create relation with user
-  @Column()
-  userId: number;
+  @ManyToOne(() => User, (user) => user.tables, { onDelete: 'CASCADE' })
+  user: User;
 }
