@@ -16,6 +16,7 @@ import {
 import { JwtGuard } from '../auth/guard';
 import { TableService } from './table.service';
 import { UpdateTableDto } from './update-table.dto';
+import { CreateTableDto } from './create-table.dto';
 
 @UseGuards(JwtGuard)
 @Controller('tables')
@@ -23,13 +24,18 @@ export class TableController {
   constructor(private tableService: TableService) {}
 
   @Post()
-  createTable(@GetUser() { id }: User) {
-    return this.tableService.createTable(id);
+  createTable(@GetUser() { id }: User, @Body() { title }: CreateTableDto) {
+    return this.tableService.createTable(id, title);
   }
 
   @Get()
-  getTableByUserId(@GetUser() { id }: User) {
+  getTablesByUserId(@GetUser() { id }: User) {
     return this.tableService.getTablesByUserId(id);
+  }
+
+  @Get(':tableId')
+  getTableByTableId(@Param('tableId', ParseIntPipe) tableId: number) {
+    return this.tableService.getTableByTableId(tableId);
   }
 
   @Put(':tableId')

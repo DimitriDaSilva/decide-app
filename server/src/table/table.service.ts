@@ -13,14 +13,18 @@ export class TableService {
     private readonly tableRepository: Repository<Table>,
   ) {}
 
-  async createTable(userId: number, tableTitle = 'Untitled Table') {
+  async createTable(userId: number, title = 'Untitled Table') {
     const user = await this.userRepository.findOneBy({ id: userId });
 
     if (!user) {
       throw new NotFoundException('User not found');
     }
 
-    await this.tableRepository.save({ title: tableTitle, user });
+    const newTable = await this.tableRepository.save({ title, user });
+
+    delete newTable.user;
+
+    return newTable;
   }
 
   async getTableByTableId(tableId: number) {
