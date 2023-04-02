@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Table } from './table.entity';
 import { Repository } from 'typeorm';
@@ -16,21 +16,41 @@ export class TableService {
   async createTable(userId: number, tableTitle = 'Untitled Table') {
     const user = await this.userRepository.findOneBy({ id: userId });
 
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
     await this.tableRepository.save({ title: tableTitle, user });
   }
 
   async getTableByTableId(tableId: number) {
-    return this.tableRepository.findOneBy({ id: tableId });
+    const table = await this.tableRepository.findOneBy({ id: tableId });
+
+    if (!table) {
+      throw new NotFoundException('Table not found');
+    }
+
+    return table;
   }
 
   async getTablesByUserId(userId: number) {
-    return this.tableRepository.findBy({ user: { id: userId } });
+    const tables = await this.tableRepository.findBy({ user: { id: userId } });
+
+    if (!tables) {
+      throw new NotFoundException('User not found');
+    }
+
+    return tables;
   }
 
   async updateTable(tableId: number, payload: Partial<Table>) {
-    const { id } = await this.getTableByTableId(tableId);
+    const table = await this.getTableByTableId(tableId);
 
-    this.tableRepository.update({ id }, { ...payload });
+    if (!table) {
+      throw new NotFoundException('Table not found');
+    }
+
+    this.tableRepository.update({ id: table.id }, { ...payload });
   }
 
   async deleteTable(tableId: number) {
