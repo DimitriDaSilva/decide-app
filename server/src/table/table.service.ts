@@ -20,7 +20,7 @@ export class TableService {
   }
 
   async getTablesByUserId(userId: number) {
-    return { message: 'all tables', userId };
+    return this.tableRepository.findBy({ user: { id: userId } });
   }
 
   async updateTable(tableId: number) {
