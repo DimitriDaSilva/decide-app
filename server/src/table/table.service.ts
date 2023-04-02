@@ -54,6 +54,12 @@ export class TableService {
   }
 
   async deleteTable(tableId: number) {
-    return { message: 'deleting table', tableId };
+    const table = await this.getTableByTableId(tableId);
+
+    if (!table) {
+      throw new NotFoundException('Table not found');
+    }
+
+    await this.tableRepository.remove(table);
   }
 }

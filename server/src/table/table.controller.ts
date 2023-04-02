@@ -5,6 +5,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   ParseIntPipe,
   Post,
@@ -39,6 +41,7 @@ export class TableController {
   }
 
   @Delete(':tableId')
+  @HttpCode(HttpStatus.NO_CONTENT)
   deleteTable(@Param('tableId', ParseIntPipe) tableId: number) {
     return this.tableService.deleteTable(tableId);
   }
