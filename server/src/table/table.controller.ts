@@ -19,8 +19,8 @@ export class TableController {
   constructor(private tableService: TableService) {}
 
   @Post()
-  createTable() {
-    return this.tableService.createTable();
+  createTable(@GetUser() { id }: User) {
+    return this.tableService.createTable(id);
   }
 
   @Get()
