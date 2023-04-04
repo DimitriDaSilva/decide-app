@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as TextLogo } from '@/assets/logo-text.svg';
 import { routePaths } from '@/app/constants';
 
-import { Button } from '../button/Button';
+import { Button } from '../../components/button/Button';
 import {
   isUserAuthenticated,
   removeAccessTokenCookie,
-} from '../auth/auth.helpers';
+} from '../../../utils/auth';
 
-const PageHeader = () => {
+const HomePageHeader = () => {
   const navigate = useNavigate();
 
   return (
@@ -46,4 +46,4 @@ const PageHeader = () => {
   );
 };
 
-export { PageHeader };
+export { HomePageHeader };

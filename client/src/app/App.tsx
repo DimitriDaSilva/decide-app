@@ -1,17 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { routePaths } from '@/app/constants';
-import HomePage from '@/app/pages/Home';
 
-import { LoginPage } from './pages/LoginPage';
-import { SignUpPage } from './pages/SignUpPage';
+import { AuthPage } from './pages/AuthPage';
+import HomePage from './pages/Home';
 
 function App() {
   return (
     <Routes>
       <Route path={routePaths.home} element={<HomePage />} />
-      <Route path={routePaths.login} element={<LoginPage />} />
-      <Route path={routePaths.signup} element={<SignUpPage />} />
+      <Route path={routePaths.auth} element={<AuthPage />} />
     </Routes>
   );
 }

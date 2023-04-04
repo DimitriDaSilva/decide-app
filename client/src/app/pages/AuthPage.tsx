@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { routePaths } from '@/app/constants';
 import { ReactComponent as ColorLogo } from '@/assets/logo-color.svg';
@@ -6,10 +6,9 @@ import { useLoginMutation } from '@/entities/auth/api/useLoginMutation';
 import { useSignUpMutation } from '@/entities/auth/api/useSignupMutation';
 import { AuthResponseDto } from '@/entities/auth/types';
 
-import { Input } from '../forms/Input';
-import { Page } from '../layout/Page';
-
-import { setAccessTokenCookie } from './auth.helpers';
+import { Input } from '../components/forms/Input';
+import { Page } from '../components/layout/Page';
+import { setAccessTokenCookie } from '../../utils/auth';
 
 interface AuthFormElements extends HTMLFormControlsCollection {
   email: HTMLInputElement;
@@ -31,14 +30,15 @@ const labels = {
   },
 };
 
-type AuthProps = {
-  page: 'login' | 'signup';
+type AuthMode = {
+  authMode: 'login' | 'signup';
 };
 
-const Auth = ({ page }: AuthProps) => {
+const AuthPage = () => {
   const { mutateAsync: login } = useLoginMutation();
   const { mutateAsync: signup } = useSignUpMutation();
   const navigate = useNavigate();
+  const { authMode } = useParams<AuthMode>();
 
   const handleOnSubmit = async (e: React.FormEvent<AuthFormElement>) => {
     e.preventDefault();
@@ -51,7 +51,8 @@ const Auth = ({ page }: AuthProps) => {
     };
 
     let data: AuthResponseDto;
-    if (page === 'login') {
+
+    if (authMode === 'login') {
       data = await login({ body });
     } else {
       data = await signup({ body });
@@ -61,11 +62,16 @@ const Auth = ({ page }: AuthProps) => {
     navigate(routePaths.home);
   };
 
+  if (!authMode) {
+    // TODO: Add a 404 page
+    return <h1>Error page</h1>;
+  }
+
   return (
     <Page className="fixed w-full h-full bg-gradient-to-b from-darkBg via-darkBg to-third justify-center gap-y-10">
       <ColorLogo />
 
-      <p>{labels[page].header}</p>
+      <p>{labels[authMode].header}</p>
 
       <form className="flex flex-col gap-y-6 w-72" onSubmit={handleOnSubmit}>
         <Input
@@ -85,11 +91,11 @@ const Auth = ({ page }: AuthProps) => {
           type="submit"
           className="mt-5 rounded-sm bg-primary px-5 py-4 placeholder-gray-base focus:outline focus:outline-primary outline-offset-1"
         >
-          {labels[page].ctaButton}
+          {labels[authMode].ctaButton}
         </button>
       </form>
     </Page>
   );
 };
 
-export { Auth };
+export { AuthPage };
