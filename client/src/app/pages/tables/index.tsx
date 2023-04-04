@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 
+import { SideBar } from './SideBar';
+
 type TablePageUrlParam = {
   tableId: string;
 };
@@ -7,7 +9,12 @@ type TablePageUrlParam = {
 const TablesPage = () => {
   const { tableId } = useParams<TablePageUrlParam>();
 
-  return <div>table {tableId}</div>;
+  return (
+    <div className="flex flex-1">
+      <SideBar />
+      <div>table {tableId}</div>
+    </div>
+  );
 };
 
 export { TablesPage };

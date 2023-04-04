@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ReactComponent as ColorLogo } from '@/assets/logo-color.svg';
+import { ReactComponent as ColorLogo } from '@/assets/logos/logo-color.svg';
 import { useLoginMutation } from '@/entities/auth/api/useLoginMutation';
 import { useSignUpMutation } from '@/entities/auth/api/useSignupMutation';
 import { AuthDto, AuthResponseDto } from '@/entities/auth/types';
