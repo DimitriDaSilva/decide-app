@@ -9,7 +9,7 @@ import { AuthResponseDto } from '@/entities/auth/types';
 import { Input } from '../forms/Input';
 import { Page } from '../layout/Page';
 
-import { setAccessTokenCookie } from './setAccessTokenCookie';
+import { setAccessTokenCookie } from './auth.helpers';
 
 interface AuthFormElements extends HTMLFormControlsCollection {
   email: HTMLInputElement;
