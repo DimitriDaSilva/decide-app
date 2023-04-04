@@ -1,13 +1,21 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import { Button } from '@/app/components/button/Button';
 import { Page } from '@/app/components/layout/Page';
 import { routePaths } from '@/app/routePaths';
+import { isUserAuthenticated } from '@/utils/auth';
 
 import { HomePageHeader } from './PageHeader';
 
 const HomePage = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isUserAuthenticated()) {
+      navigate(routePaths.tables);
+    }
+  }, []);
 
   return (
     <Page>

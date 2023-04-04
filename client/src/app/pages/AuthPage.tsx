@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { routePaths } from '../routePaths';
 import { ReactComponent as ColorLogo } from '@/assets/logo-color.svg';
 import { useLoginMutation } from '@/entities/auth/api/useLoginMutation';
 import { useSignUpMutation } from '@/entities/auth/api/useSignupMutation';
-import { AuthResponseDto } from '@/entities/auth/types';
+import { AuthDto, AuthResponseDto } from '@/entities/auth/types';
 
+import { routePaths } from '../routePaths';
 import { Input } from '../components/forms/Input';
 import { Page } from '../components/layout/Page';
 import { setAccessTokenCookie } from '../../utils/auth';
@@ -48,7 +48,7 @@ const AuthPage = () => {
     const body = {
       email: target.email.value,
       password: target.password.value,
-    };
+    } as AuthDto;
 
     let data: AuthResponseDto;
 
@@ -59,12 +59,12 @@ const AuthPage = () => {
     }
 
     setAccessTokenCookie(data.access_token);
-    navigate(routePaths.home);
+    navigate(routePaths.tables);
   };
 
   if (!authMode) {
-    // TODO: Add a 404 page
-    return <h1>Error page</h1>;
+    navigate(routePaths.pageNotFound);
+    return null;
   }
 
   return (
