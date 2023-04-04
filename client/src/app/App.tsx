@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { routePaths } from '@/app/constants';
-
+import { routePaths } from './routePaths';
 import { AuthPage } from './pages/AuthPage';
 import HomePage from './pages/Home';
 

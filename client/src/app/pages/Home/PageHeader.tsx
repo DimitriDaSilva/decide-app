@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as TextLogo } from '@/assets/logo-text.svg';
-import { routePaths } from '@/app/constants';
+import { routePaths } from '@/app/routePaths';
 
 import { Button } from '../../components/button/Button';
 import {

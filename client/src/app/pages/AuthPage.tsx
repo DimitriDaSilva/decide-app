@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { routePaths } from '@/app/constants';
+import { routePaths } from '../routePaths';
 import { ReactComponent as ColorLogo } from '@/assets/logo-color.svg';
 import { useLoginMutation } from '@/entities/auth/api/useLoginMutation';
 import { useSignUpMutation } from '@/entities/auth/api/useSignupMutation';

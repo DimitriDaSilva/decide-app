@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/app/components/button/Button';
 import { Page } from '@/app/components/layout/Page';
-import { routePaths } from '@/app/constants';
+import { routePaths } from '@/app/routePaths';
 
 import { HomePageHeader } from './PageHeader';
 

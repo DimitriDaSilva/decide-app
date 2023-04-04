@@ -1,7 +1,8 @@
 import * as _ from 'lodash-es';
 import Cookies from 'universal-cookie';
 
-import { AUTH_COOKIE_NAME, routePaths } from '@/app/constants';
+import { AUTH_COOKIE_NAME } from '@/utils/constants';
+import { routePaths } from '@/app/routePaths';
 import { ApiRoute } from '@/entities/apiRoutes';
 
 type FetcherOptions = Omit<RequestInit, 'method'>;
