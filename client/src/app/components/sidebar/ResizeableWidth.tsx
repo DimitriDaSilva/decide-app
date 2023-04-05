@@ -1,5 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+import clsx from 'clsx';
 import { PropsWithChildren, useEffect, useRef, useState } from 'react';
+
+import { ReactComponent as DoubleArrowsIcons } from '@/assets/icons/double-arrows.svg';
 
 type ResizeableWidthProps = PropsWithChildren<{
   defaultWidth?: number;
@@ -13,6 +16,8 @@ const ResizeableWidth = ({
 }: ResizeableWidthProps) => {
   const [sidebarWidth, setSidebarWidth] = useState<number>(defaultWidth);
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
   const startX = useRef<number | null>(null);
 
   const handleMouseMove = (e: MouseEvent) => {
@@ -48,12 +53,32 @@ const ResizeableWidth = ({
     startX.current = e.clientX;
   };
 
+  const toggleCollapsed = () => {
+    setIsCollapsed((prev) => !prev);
+  };
+
   return (
-    <aside className="h-screen flex" style={{ width: sidebarWidth }}>
+    <aside
+      className={clsx(
+        'h-screen flex relative transition-all',
+        isCollapsed ? '-translate-x-full w-0' : 'translate-x-0',
+      )}
+      style={{ width: isCollapsed ? 0 : sidebarWidth }}
+    >
       {children}
       <div
-        className="w-2 cursor-col-resize h-screen border-r border-gray-dark hover:border-gray-base transition-colors"
+        className={clsx(
+          'w-2 cursor-col-resize h-screen border-r border-gray-dark hover:border-gray-base transition-colors',
+          isDragging && 'border-gray-base',
+        )}
         onMouseDown={handleMouseDown}
+      />
+      <DoubleArrowsIcons
+        onClick={toggleCollapsed}
+        className={clsx(
+          'cursor-pointer absolute top-6 hover:outline hover:outline-gray-dark rounded-sm outline-offset-4',
+          isCollapsed ? 'transform rotate-180 -right-14' : 'right-6',
+        )}
       />
     </aside>
   );
