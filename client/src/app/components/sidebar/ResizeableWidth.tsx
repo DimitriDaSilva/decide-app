@@ -60,12 +60,13 @@ const ResizeableWidth = ({
   return (
     <aside
       className={clsx(
-        'h-screen flex relative transition-all',
-        isCollapsed ? '-translate-x-full w-0' : 'translate-x-0',
+        'h-screen flex relative transition-all ease-in-out duration-500',
+        isCollapsed && 'transform -translate-x-full',
       )}
-      style={{ width: isCollapsed ? 0 : sidebarWidth }}
+      style={{ width: sidebarWidth }}
     >
       {children}
+
       <div
         className={clsx(
           'w-2 cursor-col-resize h-screen border-r border-gray-dark hover:border-gray-base transition-colors',
@@ -76,7 +77,7 @@ const ResizeableWidth = ({
       <DoubleArrowsIcons
         onClick={toggleCollapsed}
         className={clsx(
-          'cursor-pointer absolute top-6 hover:outline hover:outline-gray-dark rounded-sm outline-offset-4',
+          'cursor-pointer outline-gray-dark absolute top-6 outline-offset-4 hover:outline hover:outline-gray-dark rounded-sm hover:outline-offset-4 transition-all duration-300',
           isCollapsed ? 'transform rotate-180 -right-14' : 'right-6',
         )}
       />
