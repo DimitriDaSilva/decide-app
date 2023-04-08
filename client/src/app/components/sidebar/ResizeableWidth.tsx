@@ -1,66 +1,56 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import clsx from 'clsx';
-import { PropsWithChildren, useEffect, useRef, useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 
 import { ReactComponent as DoubleArrowsIcons } from '@/assets/icons/double-arrows.svg';
 
 type ResizeableWidthProps = PropsWithChildren<{
   defaultWidth?: number;
   minWidth?: number;
+  maxWidth?: number;
 }>;
 
 const ResizeableWidth = ({
   children,
   defaultWidth = 240,
-  minWidth = 150,
+  minWidth = 180,
+  maxWidth = (window.innerWidth * 2) / 5,
 }: ResizeableWidthProps) => {
   const [sidebarWidth, setSidebarWidth] = useState<number>(defaultWidth);
-  const [isDragging, setIsDragging] = useState<boolean>(false);
   const [isCollapsed, setIsCollapsed] = useState(true);
 
-  const startX = useRef<number | null>(null);
+  const handleResize = (e: MouseEvent) => {
+    if (maxWidth < e.clientX) return;
 
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!isDragging || !startX.current) return;
-    const delta = e.clientX - startX.current;
-    const newWidth = Math.max(0, sidebarWidth + delta);
-    setSidebarWidth(newWidth);
-    startX.current = e.clientX;
+    setSidebarWidth((prev) => {
+      if (prev < (minWidth * 2) / 3) {
+        setIsCollapsed(true);
+        return 0;
+      } else {
+        return e.clientX;
+      }
+    });
   };
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  useEffect(() => {
-    if (sidebarWidth < minWidth) {
-      return setSidebarWidth(minWidth);
-    } else if (sidebarWidth > window.innerWidth / 3) {
-      return setSidebarWidth(window.innerWidth / 3);
-    }
-
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [isDragging, sidebarWidth]);
-
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    setIsDragging(true);
-    startX.current = e.clientX;
+  const handleMouseDown = () => {
+    document.addEventListener('mousemove', handleResize);
+    document.addEventListener('mouseup', () => {
+      document.removeEventListener('mousemove', handleResize);
+    });
   };
 
   const toggleCollapsed = () => {
-    setIsCollapsed((prev) => !prev);
+    setIsCollapsed((prev) => {
+      if (prev) setSidebarWidth(minWidth);
+
+      return !prev;
+    });
   };
 
   return (
     <aside
       className={clsx(
-        'h-screen flex relative transition-all ease-in-out duration-500',
+        'h-screen select-none flex relative transition-all ease-in-out duration-500',
       )}
       style={{ width: isCollapsed ? 0 : sidebarWidth }}
     >
@@ -75,8 +65,7 @@ const ResizeableWidth = ({
 
       <div
         className={clsx(
-          'w-2 cursor-col-resize h-screen border-r border-gray-dark hover:border-gray-base transition-colors',
-          isDragging && 'border-gray-base',
+          'w-2 cursor-col-resize focus:border-pink h-screen border-r border-gray-dark hover:border-gray-base transition-colors',
         )}
         onMouseDown={handleMouseDown}
       />

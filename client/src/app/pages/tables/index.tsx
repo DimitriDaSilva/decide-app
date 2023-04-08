@@ -12,7 +12,7 @@ const TablesPage = () => {
   return (
     <div className="flex flex-1">
       <SideBar />
-      <div className="flex flex-grow">table {tableId}</div>
+      <div className="flex select-none flex-grow">table {tableId}</div>
     </div>
   );
 };
