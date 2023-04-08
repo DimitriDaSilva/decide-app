@@ -61,11 +61,17 @@ const ResizeableWidth = ({
     <aside
       className={clsx(
         'h-screen flex relative transition-all ease-in-out duration-500',
-        isCollapsed && 'transform -translate-x-full',
       )}
-      style={{ width: sidebarWidth }}
+      style={{ width: isCollapsed ? 0 : sidebarWidth }}
     >
-      {children}
+      <div
+        className={clsx(
+          'overflow-x-hidden min-w-full transition-opacity ease-in-out duration-500',
+          isCollapsed && 'opacity-0',
+        )}
+      >
+        {children}
+      </div>
 
       <div
         className={clsx(
