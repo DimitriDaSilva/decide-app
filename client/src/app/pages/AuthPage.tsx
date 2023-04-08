@@ -1,15 +1,14 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { routePaths } from '@/app/constants';
-import { ReactComponent as ColorLogo } from '@/assets/logo-color.svg';
+import { ReactComponent as ColorLogo } from '@/assets/logos/logo-color.svg';
 import { useLoginMutation } from '@/entities/auth/api/useLoginMutation';
 import { useSignUpMutation } from '@/entities/auth/api/useSignupMutation';
-import { AuthResponseDto } from '@/entities/auth/types';
+import { AuthDto, AuthResponseDto } from '@/entities/auth/types';
 
-import { Input } from '../forms/Input';
-import { Page } from '../layout/Page';
-
-import { setAccessTokenCookie } from './setAccessTokenCookie';
+import { routePaths } from '../routePaths';
+import { Input } from '../components/forms/Input';
+import { Page } from '../components/layout/Page';
+import { setAccessTokenCookie } from '../../utils/auth';
 
 interface AuthFormElements extends HTMLFormControlsCollection {
   email: HTMLInputElement;
@@ -31,14 +30,15 @@ const labels = {
   },
 };
 
-type AuthProps = {
-  page: 'login' | 'signup';
+type AuthMode = {
+  authMode: 'login' | 'signup';
 };
 
-const Auth = ({ page }: AuthProps) => {
+const AuthPage = () => {
   const { mutateAsync: login } = useLoginMutation();
   const { mutateAsync: signup } = useSignUpMutation();
   const navigate = useNavigate();
+  const { authMode } = useParams<AuthMode>();
 
   const handleOnSubmit = async (e: React.FormEvent<AuthFormElement>) => {
     e.preventDefault();
@@ -48,24 +48,30 @@ const Auth = ({ page }: AuthProps) => {
     const body = {
       email: target.email.value,
       password: target.password.value,
-    };
+    } as AuthDto;
 
     let data: AuthResponseDto;
-    if (page === 'login') {
+
+    if (authMode === 'login') {
       data = await login({ body });
     } else {
       data = await signup({ body });
     }
 
     setAccessTokenCookie(data.access_token);
-    navigate(routePaths.home);
+    navigate(routePaths.tables);
   };
+
+  if (!authMode) {
+    navigate(routePaths.pageNotFound);
+    return null;
+  }
 
   return (
     <Page className="fixed w-full h-full bg-gradient-to-b from-darkBg via-darkBg to-third justify-center gap-y-10">
       <ColorLogo />
 
-      <p>{labels[page].header}</p>
+      <p>{labels[authMode].header}</p>
 
       <form className="flex flex-col gap-y-6 w-72" onSubmit={handleOnSubmit}>
         <Input
@@ -85,11 +91,11 @@ const Auth = ({ page }: AuthProps) => {
           type="submit"
           className="mt-5 rounded-sm bg-primary px-5 py-4 placeholder-gray-base focus:outline focus:outline-primary outline-offset-1"
         >
-          {labels[page].ctaButton}
+          {labels[authMode].ctaButton}
         </button>
       </form>
     </Page>
   );
 };
 
-export { Auth };
+export { AuthPage };

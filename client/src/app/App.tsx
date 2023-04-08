@@ -1,17 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { routePaths } from '@/app/constants';
-import HomePage from '@/app/pages/Home';
-
-import { LoginPage } from './pages/LoginPage';
-import { SignUpPage } from './pages/SignUpPage';
+import { routePaths } from './routePaths';
+import { AuthPage } from './pages/AuthPage';
+import { TablesPage } from './pages/TablesPage';
+import { PageNotFoundPage } from './pages/PageNotFoundPage';
+import { HomePage } from './pages/HomePage';
 
 function App() {
   return (
     <Routes>
       <Route path={routePaths.home} element={<HomePage />} />
-      <Route path={routePaths.login} element={<LoginPage />} />
-      <Route path={routePaths.signup} element={<SignUpPage />} />
+      <Route path={routePaths.auth} element={<AuthPage />} />
+      <Route path={routePaths.tables} element={<TablesPage />} />
+      <Route path="*" element={<PageNotFoundPage />} />
     </Routes>
   );
 }
