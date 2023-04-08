@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import clsx from 'clsx';
 import { PropsWithChildren, useState } from 'react';
+import { useMediaQuery } from 'usehooks-ts';
 
 import { ReactComponent as DoubleArrowsIcons } from '@/assets/icons/double-arrows.svg';
+import { devices } from '@/utils/responsive-device';
 
 const LOCAL_STORAGE_KEY_IS_SIDEBAR_COLLAPSED = 'isCollapsed';
 
@@ -22,6 +24,7 @@ const ResizeableWidth = ({
   const [isCollapsed, setIsCollapsed] = useState<boolean>(
     localStorage.getItem(LOCAL_STORAGE_KEY_IS_SIDEBAR_COLLAPSED) === 'true',
   );
+  const isMobile = !useMediaQuery(devices.mobile);
 
   const handleResize = (e: MouseEvent) => {
     if (maxWidth < e.clientX) return;
@@ -59,9 +62,9 @@ const ResizeableWidth = ({
   return (
     <aside
       className={clsx(
-        'h-screen select-none flex relative transition-all ease-in-out duration-500',
+        'h-screen fixed z-10 bg-darkBg select-none flex xs:relative transition-all ease-in-out duration-500',
       )}
-      style={{ width: isCollapsed ? 0 : sidebarWidth }}
+      style={{ width: isCollapsed ? 0 : isMobile ? '100vw' : sidebarWidth }}
     >
       <div
         className={clsx(
@@ -74,7 +77,7 @@ const ResizeableWidth = ({
 
       <div
         className={clsx(
-          'w-2 cursor-col-resize focus:border-pink h-screen border-r border-gray-dark hover:border-gray-base transition-colors',
+          'hidden xs:block w-2 cursor-col-resize focus:border-pink h-screen border-r border-gray-dark hover:border-gray-base transition-colors',
         )}
         onMouseDown={handleMouseDown}
       />

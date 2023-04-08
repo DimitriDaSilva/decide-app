@@ -47,5 +47,6 @@ module.exports = {
         groups: ['builtin', 'external', 'parent', 'sibling', 'index'],
       },
     ],
+    'no-console': 'warn',
   },
 };
