@@ -4,6 +4,8 @@ import { PropsWithChildren, useState } from 'react';
 
 import { ReactComponent as DoubleArrowsIcons } from '@/assets/icons/double-arrows.svg';
 
+const LOCAL_STORAGE_KEY_IS_SIDEBAR_COLLAPSED = 'isCollapsed';
+
 type ResizeableWidthProps = PropsWithChildren<{
   defaultWidth?: number;
   minWidth?: number;
@@ -17,7 +19,9 @@ const ResizeableWidth = ({
   maxWidth = (window.innerWidth * 2) / 5,
 }: ResizeableWidthProps) => {
   const [sidebarWidth, setSidebarWidth] = useState<number>(defaultWidth);
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(
+    localStorage.getItem(LOCAL_STORAGE_KEY_IS_SIDEBAR_COLLAPSED) === 'true',
+  );
 
   const handleResize = (e: MouseEvent) => {
     if (maxWidth < e.clientX) return;
@@ -41,7 +45,12 @@ const ResizeableWidth = ({
 
   const toggleCollapsed = () => {
     setIsCollapsed((prev) => {
-      if (prev) setSidebarWidth(minWidth);
+      if (prev) setSidebarWidth(defaultWidth);
+
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY_IS_SIDEBAR_COLLAPSED,
+        String(!prev),
+      );
 
       return !prev;
     });

@@ -15,7 +15,7 @@ const SideBar = () => {
             Add a new table
           </Button>
 
-          <div>
+          <div className="whitespace-nowrap">
             <p>Tables</p>
             <ul>
               <Link to="/tables/1">Table title</Link>
