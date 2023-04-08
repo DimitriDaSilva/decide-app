@@ -2,9 +2,9 @@ import { Route, Routes } from 'react-router-dom';
 
 import { routePaths } from './routePaths';
 import { AuthPage } from './pages/AuthPage';
-import { TablesPage } from './pages/Tables';
+import { TablesPage } from './pages/TablesPage';
 import { PageNotFoundPage } from './pages/PageNotFoundPage';
-import { HomePage } from './pages/Home';
+import { HomePage } from './pages/HomePage';
 
 function App() {
   return (

@@ -5,4 +5,4 @@ export const routePaths = {
   signup: '/auth/signup',
   tables: '/tables/:id',
   pageNotFound: '/page-not-found',
-};
+} as const;
