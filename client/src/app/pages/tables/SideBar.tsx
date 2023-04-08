@@ -15,10 +15,21 @@ const SideBar = () => {
             Add a new table
           </Button>
 
-          <div className="whitespace-nowrap">
-            <p>Tables</p>
-            <ul>
-              <Link to="/tables/1">Table title</Link>
+          <div className="w-full flex flex-col gap-y-6">
+            <p className="text-gray-base">Tables</p>
+            <ul className="flex flex-col gap-y-3 ">
+              <Link to="/tables/1">
+                <p className="truncate w-full">
+                  Table title Table titleTable titleTable titleTable titleTable
+                  titleTable titleTable title
+                </p>
+              </Link>
+              <Link to="/tables/2">
+                <p className="truncate w-full">
+                  Table title Table titleTable titleTable titleTable titleTable
+                  titleTable titleTable title
+                </p>
+              </Link>
             </ul>
           </div>
         </div>
