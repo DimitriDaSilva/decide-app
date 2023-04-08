@@ -15,7 +15,7 @@ type TableItemProps = {
 const TableItem = ({ title, id }: TableItemProps) => {
   return (
     <Link to={`/tables/${id}`}>
-      <TooltipProvider>
+      <TooltipProvider delayDuration={400}>
         <Tooltip>
           <TooltipTrigger>
             <p className="truncate w-full">{title}</p>
