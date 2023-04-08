@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 
+import { HomePage } from '@/app/pages/home';
+
 import { routePaths } from './routePaths';
 import { AuthPage } from './pages/AuthPage';
-import { HomePage } from './pages/home';
 import { TablesPage } from './pages/tables';
 import { PageNotFoundPage } from './pages/PageNotFoundPage';
 
