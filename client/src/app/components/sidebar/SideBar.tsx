@@ -5,6 +5,23 @@ import { ResizeableWidth } from '@/app/components/sidebar/ResizeableWidth';
 import { Button } from '@/app/components/button/Button';
 import { removeAccessTokenCookie } from '@/utils/auth';
 
+import { TableItem } from './TableItem';
+
+const MOCK_TABLES = [
+  {
+    id: 1,
+    title: 'Table 1',
+  },
+  {
+    id: 2,
+    title: 'Table 2',
+  },
+  {
+    id: 3,
+    title: 'Table 3',
+  },
+];
+
 const SideBar = () => {
   return (
     <ResizeableWidth>
@@ -19,18 +36,9 @@ const SideBar = () => {
           <div className="w-full flex flex-col gap-y-6">
             <p className="text-gray-base">Tables</p>
             <ul className="flex flex-col gap-y-3 ">
-              <Link to="/tables/1">
-                <p className="truncate w-full">
-                  Table title Table titleTable titleTable titleTable titleTable
-                  titleTable titleTable title
-                </p>
-              </Link>
-              <Link to="/tables/2">
-                <p className="truncate w-full">
-                  Table title Table titleTable titleTable titleTable titleTable
-                  titleTable titleTable title
-                </p>
-              </Link>
+              {MOCK_TABLES.map(({ title, id }) => (
+                <TableItem key={id} title={title} id={id} />
+              ))}
             </ul>
           </div>
         </div>
