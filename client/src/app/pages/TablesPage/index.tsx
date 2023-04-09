@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { SideBar } from '../../components/sidebar/SideBar';
+import { SideBar } from '../../components/organisms/sidebar/SideBar';
 
 type TablePageUrlParam = {
   tableId: string;

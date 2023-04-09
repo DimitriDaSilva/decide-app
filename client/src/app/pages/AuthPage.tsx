@@ -6,8 +6,8 @@ import { useSignUpMutation } from '@/entities/auth/useSignupMutation';
 import { AuthDto, AuthResponseDto } from '@/entities/auth/auth.dto';
 
 import { routePaths } from '../routePaths';
-import { Input } from '../components/forms/Input';
-import { Page } from '../components/layout/Page';
+import { Input } from '../components/atoms/forms/Input';
+import { Page } from '../components/atoms/layout/Page';
 import { setAccessTokenCookie } from '../../utils/auth';
 
 interface AuthFormElements extends HTMLFormControlsCollection {

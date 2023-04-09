@@ -7,7 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import App from '@/app/App';
 
 import './styles.css';
-import { ErrorBoundary } from './app/components/user-feedback/ErrorBoundary';
+import { ErrorBoundary } from './app/components/molecules/user-feedback/ErrorBoundary';
 import { queryClient } from './utils/query-client';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

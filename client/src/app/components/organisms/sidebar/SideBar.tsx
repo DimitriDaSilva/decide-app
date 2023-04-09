@@ -1,6 +1,6 @@
 import { ReactComponent as TextLogo } from '@/assets/logos/logo-text.svg';
-import { ResizeableWidth } from '@/app/components/sidebar/ResizeableWidth';
-import { Button } from '@/app/components/button/Button';
+import { ResizeableWidth } from '@/app/components/organisms/sidebar/ResizeableWidth';
+import { Button } from '@/app/components/atoms/button/Button';
 import { removeAccessTokenCookie } from '@/utils/auth';
 
 import { TableList } from './TableList';

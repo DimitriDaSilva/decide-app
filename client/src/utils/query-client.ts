@@ -1,7 +1,7 @@
 import { QueryCache, QueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-import { triggerErrorToast } from '@/app/components/user-feedback/Toasts';
+import { triggerErrorToast } from '@/app/components/molecules/user-feedback/Toasts';
 import { routePaths } from '@/app/routePaths';
 
 const queryClient = new QueryClient({

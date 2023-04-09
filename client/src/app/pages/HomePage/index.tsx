@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-import { Button } from '@/app/components/button/Button';
-import { Page } from '@/app/components/layout/Page';
+import { Button } from '@/app/components/atoms/button/Button';
+import { Page } from '@/app/components/atoms/layout/Page';
 import { routePaths } from '@/app/routePaths';
 import { isUserAuthenticated } from '@/utils/auth';
 

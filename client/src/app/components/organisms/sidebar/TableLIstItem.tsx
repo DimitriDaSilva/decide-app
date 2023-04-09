@@ -5,7 +5,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '../Tooltip';
+} from '../../atoms/Tooltip';
 
 type TableItemProps = {
   title: string;

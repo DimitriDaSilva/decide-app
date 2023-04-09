@@ -1,7 +1,7 @@
 import { Component, ReactNode } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-import { Button } from '../button/Button';
+import { Button } from '../../atoms/button/Button';
 
 interface Props {
   children?: ReactNode;
