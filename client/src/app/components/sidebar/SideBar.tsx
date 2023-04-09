@@ -5,9 +5,9 @@ import { ResizeableWidth } from '@/app/components/sidebar/ResizeableWidth';
 import { Button } from '@/app/components/button/Button';
 import { removeAccessTokenCookie } from '@/utils/auth';
 
-import { TableItem } from './TableItem';
+import { TableList } from './TableList';
 
-const MOCK_TABLES = [
+export const MOCK_TABLES = [
   {
     id: 1,
     title: 'Table 1',
@@ -33,14 +33,7 @@ const SideBar = () => {
             Add a new table
           </Button>
 
-          <div className="w-full flex flex-col gap-y-6">
-            <p className="text-gray-base">Tables</p>
-            <ul className="flex flex-col gap-y-3 ">
-              {MOCK_TABLES.map(({ title, id }) => (
-                <TableItem key={id} title={title} id={id} />
-              ))}
-            </ul>
-          </div>
+          <TableList />
         </div>
 
         <Button

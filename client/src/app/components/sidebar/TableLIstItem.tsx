@@ -12,7 +12,7 @@ type TableItemProps = {
   id: number;
 };
 
-const TableItem = ({ title, id }: TableItemProps) => {
+const TableListItem = ({ title, id }: TableItemProps) => {
   return (
     <Link to={`/tables/${id}`}>
       <TooltipProvider delayDuration={400}>
@@ -27,4 +27,4 @@ const TableItem = ({ title, id }: TableItemProps) => {
   );
 };
 
-export { TableItem };
+export { TableListItem };
