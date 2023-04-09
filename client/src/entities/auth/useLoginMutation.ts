@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { API_ROUTE_URL } from '@/entities/apiRoutes';
 import { fetcher } from '@/utils/fetcher';
 
-import { AuthDto, AuthResponseSchema } from '../types';
+import { AuthDto, AuthResponseSchema } from './auth.dto';
 
 type LoginProps = {
   body: AuthDto;
