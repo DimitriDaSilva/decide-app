@@ -2,8 +2,8 @@
 import clsx from 'clsx';
 import { PropsWithChildren, useState } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
+import { ChevronsLeft } from 'lucide-react';
 
-import { ReactComponent as DoubleArrowsIcons } from '@/assets/icons/double-arrows.svg';
 import { devices } from '@/utils/responsive-device';
 
 const LOCAL_STORAGE_KEY_IS_SIDEBAR_COLLAPSED = 'isCollapsed';
@@ -81,10 +81,10 @@ const ResizeableWidth = ({
         )}
         onMouseDown={handleMouseDown}
       />
-      <DoubleArrowsIcons
+      <ChevronsLeft
         onClick={toggleCollapsed}
         className={clsx(
-          'cursor-pointer outline-gray-dark absolute top-6 outline-offset-4 hover:outline hover:outline-gray-dark rounded-sm hover:outline-offset-4 transition-all duration-300',
+          'cursor-pointer text-gray-dark outline-gray-dark absolute top-6 outline-offset-4 hover:outline hover:outline-gray-dark rounded-sm hover:outline-offset-4 transition-all duration-300',
           isCollapsed ? 'transform rotate-180 -right-14' : 'right-6',
         )}
       />
