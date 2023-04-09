@@ -10,7 +10,7 @@ type LoginProps = {
 };
 
 const login = async ({ body }: LoginProps) => {
-  const data = await fetcher(
+  const res = await fetcher(
     {
       url: API_ROUTE_URL.LOGIN,
       method: 'POST',
@@ -23,7 +23,7 @@ const login = async ({ body }: LoginProps) => {
     },
   );
 
-  return AuthResponseSchema.parse(data);
+  return AuthResponseSchema.parse(res.data);
 };
 
 const useLoginMutation = () => {

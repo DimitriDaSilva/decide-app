@@ -10,7 +10,7 @@ import { TableListResponseSchema } from './tables.dto';
 const getTables = async () => {
   const res = await fetcher({ url: API_ROUTE_URL.TABLES, method: 'GET' });
 
-  return TableListResponseSchema.parse(res);
+  return TableListResponseSchema.parse(res.data);
 };
 
 const useGetTablesQuery = () => {

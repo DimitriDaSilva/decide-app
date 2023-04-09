@@ -10,7 +10,7 @@ type SignUpProps = {
 };
 
 const signUp = async ({ body }: SignUpProps) => {
-  const data = await fetcher(
+  const res = await fetcher(
     {
       url: API_ROUTE_URL.SIGN_UP,
       method: 'POST',
@@ -23,7 +23,7 @@ const signUp = async ({ body }: SignUpProps) => {
     },
   );
 
-  return AuthResponseSchema.parse(data);
+  return AuthResponseSchema.parse(res.data);
 };
 
 const useSignUpMutation = () => {
