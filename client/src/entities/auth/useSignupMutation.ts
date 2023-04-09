@@ -16,7 +16,7 @@ const signUp = async ({ body }: SignUpProps) => {
       method: 'POST',
     },
     {
-      body: JSON.stringify(body),
+      data: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
       },
