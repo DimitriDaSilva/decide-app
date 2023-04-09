@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { ReactComponent as ColorLogo } from '@/assets/logos/logo-color.svg';
 import { useLoginMutation } from '@/entities/auth/useLoginMutation';
-import { useSignUpMutation } from '@/entities/auth/api/useSignupMutation';
+import { useSignUpMutation } from '@/entities/auth/useSignupMutation';
 import { AuthDto, AuthResponseDto } from '@/entities/auth/auth.dto';
 
 import { routePaths } from '../routePaths';
