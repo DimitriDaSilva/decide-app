@@ -1,6 +1,8 @@
 export const API_ROUTE_URL = {
-  SIGN_UP: '/auth/signup',
-  LOGIN: '/auth/login',
+  SIGN_UP: '/auth/signup' as const,
+  LOGIN: '/auth/login' as const,
+  TABLES: '/tables' as const,
+  TABLES_ID: (id: number) => `/tables/${id}` as const,
 };
 
 type SignUpRoute = {
@@ -13,4 +15,9 @@ type LoginRoute = {
   method: 'POST';
 };
 
-export type ApiRoute = SignUpRoute | LoginRoute;
+type TableRoute = {
+  url: typeof API_ROUTE_URL.TABLES;
+  method: 'POST' | 'GET';
+};
+
+export type ApiRoute = SignUpRoute | LoginRoute | TableRoute;

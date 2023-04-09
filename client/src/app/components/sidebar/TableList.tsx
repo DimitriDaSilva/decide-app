@@ -1,5 +1,19 @@
 import { TableListItem } from './TableLIstItem';
-import { MOCK_TABLES } from './SideBar';
+
+const MOCK_TABLES = [
+  {
+    id: 1,
+    title: 'Table 1',
+  },
+  {
+    id: 2,
+    title: 'Table 2',
+  },
+  {
+    id: 3,
+    title: 'Table 3',
+  },
+];
 
 const TableList = () => {
   return (
