@@ -2,21 +2,6 @@ import { useGetTablesQuery } from '@/entities/tables/useGetTablesQuery';
 
 import { TableListItem } from './TableLIstItem';
 
-const MOCK_TABLES = [
-  {
-    id: 1,
-    title: 'Table 1',
-  },
-  {
-    id: 2,
-    title: 'Table 2',
-  },
-  {
-    id: 3,
-    title: 'Table 3',
-  },
-];
-
 const TableList = () => {
   const { data: tables } = useGetTablesQuery();
 
