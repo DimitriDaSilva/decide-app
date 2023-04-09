@@ -4,6 +4,7 @@ import { Button } from '@/app/components/atoms/button/Button';
 import { removeAccessTokenCookie } from '@/utils/auth';
 
 import { TableList } from './TableList';
+import { TableCreationDialog } from './TableCreationDialog';
 
 const SideBar = () => {
   return (
@@ -12,9 +13,7 @@ const SideBar = () => {
         <div className="flex flex-col gap-y-10 w-full items-center">
           <TextLogo className="w-28 self-start" />
 
-          <Button variant="filled" color="gradient">
-            Add a new table
-          </Button>
+          <TableCreationDialog />
 
           <TableList />
         </div>
