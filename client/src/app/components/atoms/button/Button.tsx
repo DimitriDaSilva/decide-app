@@ -19,6 +19,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         buttonDesign(variant, color),
         className,
       )}
+      ref={ref}
     >
       {children}
     </button>
