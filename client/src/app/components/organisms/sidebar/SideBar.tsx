@@ -9,15 +9,16 @@ import { TableCreationDialog } from './TableCreationDialog';
 const SideBar = () => {
   return (
     <ResizeableWidth>
-      <div className="flex flex-1 w-full h-full flex-col justify-between p-4">
-        <div className="flex flex-col gap-y-10 w-full items-center">
-          <TextLogo className="w-28 self-start" />
+      <div className="flex w-full h-full flex-col justify-between p-4 gap-y-4">
+        <div className="flex flex-col w-full items-center">
+          <div className="flex flex-col gap-y-10 w-full items-center sticky top-4 bg-darkBg pb-5 border-b border-gray-dark mb-5">
+            <TextLogo className="w-28 self-start" />
 
-          <TableCreationDialog />
+            <TableCreationDialog />
+          </div>
 
           <TableList />
         </div>
-
         <Button
           onClick={removeAccessTokenCookie}
           variant="ghost"
