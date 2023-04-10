@@ -1,8 +1,10 @@
+import { useState } from 'react';
+
 import { Button } from '../../atoms/button/Button';
+import { Input } from '../../atoms/forms/Input';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -18,12 +20,21 @@ const TableCreationDialog = () => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you sure absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </DialogDescription>
+          <DialogTitle>Start creating your new table</DialogTitle>
         </DialogHeader>
+
+        <form className="w-full md:w-3/4 flex flex-col gap-8">
+          <Input
+            label="Dilemma you are indecisive about"
+            id="title"
+            type="text"
+            placeholder="Where should I go in holidays?"
+          />
+
+          <Button variant="filled" color="gradient">
+            Create table
+          </Button>
+        </form>
       </DialogContent>
     </Dialog>
   );
