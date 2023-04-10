@@ -16,7 +16,8 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={clsx(
-        'animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0 fixed z-50 grid w-full gap-4 rounded-full bg-darkBg p-6 sm:max-w-lg sm:rounded-lg',
+        'animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0',
+        'fixed z-50 flex flex-col items-center w-11/12 md:w-2/3 gap-8 rounded-sm bg-darkBg p-8 md:px-20 md:py-8 self-center',
         className,
       )}
       {...props}

@@ -10,8 +10,7 @@ const DialogTitle = React.forwardRef<
   <DialogPrimitive.Title
     ref={ref}
     className={clsx(
-      'text-lg font-semibold text-slate-900',
-      'dark:text-slate-50',
+      'text-2xl md:text-3xl text-transparent text-center font-semibold header-gradient bg-clip-text',
       className,
     )}
     {...props}
