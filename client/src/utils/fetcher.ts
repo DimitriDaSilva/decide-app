@@ -5,7 +5,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { AUTH_COOKIE_NAME } from '@/utils/constants';
 import { ApiRoute } from '@/entities/apiRoutes';
 
-type FetcherOptions = Omit<AxiosRequestConfig, 'method'>;
+type FetcherOptions = Omit<AxiosRequestConfig, 'method' | 'url'>;
 
 const fetcher = async (apiRoute: ApiRoute, options: FetcherOptions = {}) => {
   const url = import.meta.env.VITE_API_BASE_URL + apiRoute.url;

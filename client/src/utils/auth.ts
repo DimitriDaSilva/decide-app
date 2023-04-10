@@ -13,6 +13,7 @@ const setAccessTokenCookie = (accessToken: string) => {
   }
 
   cookies.set(AUTH_COOKIE_NAME, accessToken, {
+    path: '/',
     expires: new Date(decodedAccessToken.exp * 1000),
   });
 };
@@ -20,7 +21,9 @@ const setAccessTokenCookie = (accessToken: string) => {
 const removeAccessTokenCookie = () => {
   const cookies = new Cookies();
 
-  cookies.remove(AUTH_COOKIE_NAME);
+  cookies.remove(AUTH_COOKIE_NAME, {
+    path: '/',
+  });
 
   window.location.reload();
 };
