@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 
 import {
   Tooltip,
@@ -13,16 +14,35 @@ type TableItemProps = {
 };
 
 const TableListItem = ({ title, id }: TableItemProps) => {
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const [isTruncated, setIsTruncated] = useState(false);
+
+  const TextComponent = (
+    <p ref={textRef} className="truncate text-left">
+      {title}
+    </p>
+  );
+
+  useEffect(() => {
+    if (textRef.current) {
+      setIsTruncated(textRef.current.scrollWidth > textRef.current.clientWidth);
+    }
+  }, [textRef.current]);
+
   return (
     <Link to={`/tables/${id}`}>
-      <TooltipProvider delayDuration={400}>
-        <Tooltip>
-          <TooltipTrigger className="max-w-full">
-            <p className="truncate text-left">{title}</p>
-          </TooltipTrigger>
-          <TooltipContent side="right">{title}</TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      {isTruncated ? (
+        <TooltipProvider delayDuration={400}>
+          <Tooltip>
+            <TooltipTrigger className="max-w-full">
+              {TextComponent}
+            </TooltipTrigger>
+            <TooltipContent side="right">{title}</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      ) : (
+        TextComponent
+      )}
     </Link>
   );
 };
