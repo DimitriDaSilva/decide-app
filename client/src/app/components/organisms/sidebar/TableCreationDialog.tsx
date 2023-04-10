@@ -1,3 +1,5 @@
+import { useBoolean } from 'usehooks-ts';
+
 import { useCreateTableMutation } from '@/entities/tables/useCreateTableMutation';
 import { TableRequestDto } from '@/entities/tables/tables.dto';
 
@@ -20,9 +22,12 @@ interface TableCreationElement extends HTMLFormElement {
 }
 
 const TableCreationDialog = () => {
+  const { value: dialogIsOpen, setValue: setDialogIsOpen } = useBoolean(false);
   const { mutateAsync: createTable } = useCreateTableMutation();
 
   const handleOnSubmit = async (e: React.FormEvent<TableCreationElement>) => {
+    e.preventDefault();
+
     const target = e.currentTarget.elements;
 
     const body = {
@@ -30,9 +35,11 @@ const TableCreationDialog = () => {
     } as TableRequestDto;
 
     await createTable({ body });
+    setDialogIsOpen(false);
   };
+
   return (
-    <Dialog>
+    <Dialog open={dialogIsOpen} onOpenChange={setDialogIsOpen}>
       <DialogTrigger>
         <Button variant="filled" color="gradient">
           Add a new table
