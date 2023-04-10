@@ -17,8 +17,8 @@ const TableListItem = ({ title, id }: TableItemProps) => {
     <Link to={`/tables/${id}`}>
       <TooltipProvider delayDuration={400}>
         <Tooltip>
-          <TooltipTrigger>
-            <p className="truncate w-full">{title}</p>
+          <TooltipTrigger className="max-w-full">
+            <p className="truncate text-left">{title}</p>
           </TooltipTrigger>
           <TooltipContent side="right">{title}</TooltipContent>
         </Tooltip>
