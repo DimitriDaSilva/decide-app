@@ -40,7 +40,7 @@ const TableCreationDialog = () => {
 
   return (
     <Dialog open={dialogIsOpen} onOpenChange={setDialogIsOpen}>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button variant="filled" color="gradient">
           Add a new table
         </Button>
