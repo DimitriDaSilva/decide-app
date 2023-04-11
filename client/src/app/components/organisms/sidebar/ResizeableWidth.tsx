@@ -12,6 +12,7 @@ type ResizeableWidthProps = PropsWithChildren<{
   defaultWidth?: number;
   minWidth?: number;
   maxWidth?: number;
+  className?: string;
 }>;
 
 const ResizeableWidth = ({
@@ -19,6 +20,7 @@ const ResizeableWidth = ({
   defaultWidth = 240,
   minWidth = 180,
   maxWidth = (window.innerWidth * 2) / 5,
+  className,
 }: ResizeableWidthProps) => {
   const [sidebarWidth, setSidebarWidth] = useState<number>(defaultWidth);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(
@@ -70,6 +72,7 @@ const ResizeableWidth = ({
         className={clsx(
           'overflow-x-hidden min-w-full transition-opacity ease-in-out duration-500',
           isCollapsed && 'opacity-0',
+          className,
         )}
       >
         {children}
