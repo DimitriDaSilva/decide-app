@@ -63,9 +63,7 @@ const ResizeableWidth = ({
 
   return (
     <aside
-      className={clsx(
-        'h-screen fixed z-10 bg-darkBg select-none flex xs:relative transition-all ease-in-out duration-500',
-      )}
+      className="h-screen fixed z-10 bg-darkBg select-none flex xs:relative transition-all ease-in-out duration-500"
       style={{ width: isCollapsed ? 0 : isMobile ? '100vw' : sidebarWidth }}
     >
       <div
@@ -79,11 +77,10 @@ const ResizeableWidth = ({
       </div>
 
       <div
-        className={clsx(
-          'hidden xs:block w-2 cursor-col-resize focus:border-pink h-screen border-r border-gray-dark hover:border-gray-base transition-colors',
-        )}
+        className="hidden xs:block absolute top-0 right-1 w-2 cursor-col-resize h-screen border-r  border-gray-dark hover:border-gray-base transition-colors"
         onMouseDown={handleMouseDown}
       />
+
       <ChevronsLeft
         onClick={toggleCollapsed}
         className={clsx(
