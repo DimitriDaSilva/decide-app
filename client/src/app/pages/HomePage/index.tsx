@@ -13,7 +13,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (isUserAuthenticated()) {
-      navigate(routePaths.tables);
+      navigate(routePaths.tables, { state: { from: routePaths.home } });
     }
   }, []);
 
