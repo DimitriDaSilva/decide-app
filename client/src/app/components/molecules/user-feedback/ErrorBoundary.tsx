@@ -44,15 +44,6 @@ class ErrorBoundary extends Component<Props, State> {
           <Button
             variant="ghost"
             color="secondary"
-            onClick={notify}
-            className="mt-5"
-          >
-            Test
-          </Button>
-
-          <Button
-            variant="ghost"
-            color="secondary"
             onClick={() => window.location.reload()}
           >
             Refresh
