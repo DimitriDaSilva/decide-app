@@ -3,6 +3,10 @@ import { z } from 'zod';
 export const TableResponseSchema = z.object({
   id: z.number(),
   title: z.string(),
+  updatedAt: z
+    .string()
+    .datetime()
+    .transform((date) => new Date(date)),
 });
 export type TableResponseDto = z.infer<typeof TableResponseSchema>;
 

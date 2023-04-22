@@ -13,9 +13,11 @@ const TableList = () => {
     <div className="w-full flex flex-col gap-y-6">
       <p className="text-gray-base">Tables</p>
       <ul className="flex flex-col gap-y-3 ">
-        {tables.map(({ title, id }) => (
-          <TableListItem key={id} title={title} id={id} />
-        ))}
+        {tables
+          .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())
+          .map(({ title, id }) => (
+            <TableListItem key={id} title={title} id={id} />
+          ))}
       </ul>
     </div>
   );
