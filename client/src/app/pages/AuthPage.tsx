@@ -1,13 +1,13 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ReactComponent as ColorLogo } from '@/assets/logos/logo-color.svg';
-import { useLoginMutation } from '@/entities/auth/api/useLoginMutation';
-import { useSignUpMutation } from '@/entities/auth/api/useSignupMutation';
-import { AuthDto, AuthResponseDto } from '@/entities/auth/types';
+import { useLoginMutation } from '@/entities/auth/useLoginMutation';
+import { useSignUpMutation } from '@/entities/auth/useSignupMutation';
+import { AuthDto, AuthResponseDto } from '@/entities/auth/auth.dto';
 
 import { routePaths } from '../routePaths';
-import { Input } from '../components/forms/Input';
-import { Page } from '../components/layout/Page';
+import { Input } from '../components/atoms/forms/Input';
+import { Page } from '../components/atoms/layout/Page';
 import { setAccessTokenCookie } from '../../utils/auth';
 
 interface AuthFormElements extends HTMLFormControlsCollection {

@@ -9,13 +9,13 @@ type InputProps = {
 
 const Input = ({ label, id, className, ...inputProps }: InputProps) => {
   return (
-    <label className="flex flex-col gap-y-2" htmlFor={id}>
+    <label className="flex flex-col gap-y-2 text-sm md:text-base" htmlFor={id}>
       {label}
       <input
         {...inputProps}
         id={id}
         className={clsx(
-          'rounded-sm bg-third px-5 py-3 placeholder-gray-base focus:outline focus:outline-primary',
+          'rounded-sm text-sm md:text-base bg-third px-5 py-3 placeholder-gray-base focus:outline focus:outline-primary',
           className,
         )}
       />

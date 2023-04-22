@@ -1,6 +1,9 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { SideBar } from '../../components/sidebar/SideBar';
+import { useGetTablesQuery } from '@/entities/tables/useGetTablesQuery';
+import { routePaths } from '@/app/routePaths';
+
+import { SideBar } from '../../components/organisms/sidebar';
 
 type TablePageUrlParam = {
   tableId: string;
@@ -8,6 +11,21 @@ type TablePageUrlParam = {
 
 const TablesPage = () => {
   const { tableId } = useParams<TablePageUrlParam>();
+  const { data: tables } = useGetTablesQuery();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  if (!tables) {
+    return <div>Loading...</div>;
+  }
+
+  if (location.state?.from === routePaths.home) {
+    const mostRecentTable = tables.reduce((prev, curr) => {
+      return prev.updatedAt.getTime() > curr.updatedAt.getTime() ? prev : curr;
+    });
+
+    navigate(routePaths.tables.replace(':tableId', `${mostRecentTable.id}`));
+  }
 
   return (
     <div className="flex flex-1">

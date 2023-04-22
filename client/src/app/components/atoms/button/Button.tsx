@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react';
 
 import { ButtonColor, buttonDesign, ButtonVariant } from './common';
 
@@ -10,14 +10,8 @@ type ButtonProps = {
   className?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button = ({
-  children,
-  variant,
-  color,
-  className,
-  ...rest
-}: ButtonProps) => {
-  return (
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, variant, color, className, ...rest }, ref) => (
     <button
       {...rest}
       className={clsx(
@@ -25,10 +19,12 @@ const Button = ({
         buttonDesign(variant, color),
         className,
       )}
+      ref={ref}
     >
       {children}
     </button>
-  );
-};
+  ),
+);
+Button.displayName = 'Button';
 
 export { Button };

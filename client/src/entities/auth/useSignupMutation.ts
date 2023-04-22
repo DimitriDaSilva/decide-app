@@ -3,27 +3,27 @@ import { useMutation } from '@tanstack/react-query';
 import { API_ROUTE_URL } from '@/entities/apiRoutes';
 import { fetcher } from '@/utils/fetcher';
 
-import { AuthDto, AuthResponseSchema } from '../types';
+import { AuthDto, AuthResponseSchema } from './auth.dto';
 
 type SignUpProps = {
   body: AuthDto;
 };
 
 const signUp = async ({ body }: SignUpProps) => {
-  const data = await fetcher(
+  const res = await fetcher(
     {
       url: API_ROUTE_URL.SIGN_UP,
       method: 'POST',
     },
     {
-      body: JSON.stringify(body),
+      data: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
       },
     },
   );
 
-  return AuthResponseSchema.parse(data);
+  return AuthResponseSchema.parse(res.data);
 };
 
 const useSignUpMutation = () => {
