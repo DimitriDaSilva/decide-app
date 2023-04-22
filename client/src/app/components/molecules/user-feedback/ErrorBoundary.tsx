@@ -1,5 +1,4 @@
 import { Component, ReactNode } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
 
 import { Button } from '../../atoms/button/Button';
 
@@ -10,8 +9,6 @@ interface Props {
 interface State {
   error: Error | null;
 }
-const notify = () => toast('Here is your toast.');
-
 class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -26,7 +23,6 @@ class ErrorBoundary extends Component<Props, State> {
     if (this.state.error) {
       return (
         <div className="flex flex-1 flex-col justify-center gap-y-4 items-center">
-          <Toaster />
           <h1 className="font-extrabold text-transparent text-2xl w-2/3 bg-clip-text header-gradient text-center">
             Sorry, something went wrong... Try to refresh the page. If the
             problem persists, open a GitHub issue{' '}
