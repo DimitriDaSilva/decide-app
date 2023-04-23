@@ -2,7 +2,7 @@ import { TableCreationDialog } from '@/app/components/organisms/TableCreationDia
 
 const EmptyTables = () => {
   return (
-    <div className="flex gap-y-7 justify-center items-center flex-col">
+    <div className="flex gap-y-7 w-full justify-center items-center flex-col">
       <h1 className="w-4/5 text-2xl md:text-3xl text-transparent text-center font-semibold header-gradient bg-clip-text">
         Stop agonising over your dilemma and take action!
       </h1>
