@@ -3,15 +3,15 @@ import { useBoolean } from 'usehooks-ts';
 import { useCreateTableMutation } from '@/entities/tables/useCreateTableMutation';
 import { TableRequestDto } from '@/entities/tables/tables.dto';
 
-import { Button } from '../../atoms/button/Button';
-import { Input } from '../../atoms/forms/Input';
+import { Button } from '../atoms/button/Button';
+import { Input } from '../atoms/forms/Input';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../../molecules/dialog';
+} from '../molecules/dialog';
 
 interface TableCreationElements extends HTMLFormControlsCollection {
   title: HTMLInputElement;
@@ -21,7 +21,11 @@ interface TableCreationElement extends HTMLFormElement {
   readonly elements: TableCreationElements;
 }
 
-const TableCreationDialog = () => {
+type TableCreationDialogProps = {
+  buttonLabel: string;
+};
+
+const TableCreationDialog = ({ buttonLabel }: TableCreationDialogProps) => {
   const { value: dialogIsOpen, setValue: setDialogIsOpen } = useBoolean(false);
   const { mutateAsync: createTable } = useCreateTableMutation();
 
@@ -42,7 +46,7 @@ const TableCreationDialog = () => {
     <Dialog open={dialogIsOpen} onOpenChange={setDialogIsOpen}>
       <DialogTrigger asChild>
         <Button variant="filled" color="gradient">
-          Add a new table
+          {buttonLabel}
         </Button>
       </DialogTrigger>
       <DialogContent>
