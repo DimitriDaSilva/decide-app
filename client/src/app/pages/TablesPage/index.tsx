@@ -1,16 +1,14 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useGetTablesQuery } from '@/entities/tables/useGetTablesQuery';
 import { routePaths } from '@/app/routePaths';
 
 import { SideBar } from '../../components/organisms/sidebar';
 
-type TablePageUrlParam = {
-  tableId: string;
-};
+import { EmptyTables } from './EmptyTables';
+import { Table } from './table';
 
 const TablesPage = () => {
-  const { tableId } = useParams<TablePageUrlParam>();
   const { data: tables } = useGetTablesQuery();
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,7 +17,7 @@ const TablesPage = () => {
     return <div>Loading...</div>;
   }
 
-  if (location.state?.from === routePaths.home) {
+  if (location.state?.from === routePaths.home && tables.length > 0) {
     const mostRecentTable = tables.reduce((prev, curr) => {
       return prev.updatedAt.getTime() > curr.updatedAt.getTime() ? prev : curr;
     });
@@ -30,7 +28,9 @@ const TablesPage = () => {
   return (
     <div className="flex flex-1">
       <SideBar />
-      <div className="flex select-none flex-grow">table {tableId}</div>
+      <div className="flex select-none flex-grow">
+        {tables.length === 0 ? <EmptyTables /> : <Table />}
+      </div>
     </div>
   );
 };

@@ -3,8 +3,9 @@ import { ResizeableWidth } from '@/app/components/organisms/sidebar/ResizeableWi
 import { Button } from '@/app/components/atoms/button/Button';
 import { removeAccessTokenCookie } from '@/utils/auth';
 
+import { TableCreationDialog } from '../TableCreationDialog';
+
 import { TableList } from './TableList';
-import { TableCreationDialog } from './TableCreationDialog';
 
 const SideBar = () => {
   return (
@@ -14,7 +15,7 @@ const SideBar = () => {
           <div className="flex flex-col gap-y-10 w-full items-center sticky top-0 pt-4 bg-darkBg pb-5 border-b border-gray-dark mb-5">
             <TextLogo className="w-28 self-start" />
 
-            <TableCreationDialog />
+            <TableCreationDialog buttonLabel="Add a new table" />
           </div>
 
           <TableList />

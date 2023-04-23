@@ -27,9 +27,12 @@ const HomePage = () => {
             Make hard decisions easy with Decide
           </h1>
           <p className="text-gray-base text-lg text-center">
-            Are you struggling to make a decision?
-            <br />
-            Use the power of pros & cons tables to take the best decision.
+            Stop agonizing over your dilemma and take action! The solution is at
+            your fingertips - create your first Decide table. This powerful tool
+            will help you organize your thoughts, compare options, and
+            ultimately reach a confident decision. Don&apos;t waste any more
+            time or energy on indecision. Start your Decide table today and take
+            control of your future.
           </p>
         </div>
 
