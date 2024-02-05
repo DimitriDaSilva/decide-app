@@ -61,7 +61,7 @@
     "@types/jest": "29.5.12",
     "@types/node": "20.11.16",
     "@types/passport-jwt": "4.0.1",
-    "@typescript-eslint/eslint-plugin": "5.61.0",
+    "@typescript-eslint/eslint-plugin": "6.20.0",
     "@typescript-eslint/parser": "5.62.0",
     "dotenv-cli": "7.3.0",
     "eslint": "8.56.0",
