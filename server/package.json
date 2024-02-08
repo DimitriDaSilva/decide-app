@@ -53,7 +53,7 @@
     "typeorm": "0.3.20"
   },
   "devDependencies": {
-    "@nestjs/cli": "10.3.1",
+    "@nestjs/cli": "10.3.2",
     "@nestjs/schematics": "10.1.1",
     "@nestjs/testing": "9.4.3",
     "@types/dotenv": "8.2.0",
